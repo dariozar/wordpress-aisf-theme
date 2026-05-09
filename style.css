@@ -46,15 +46,8 @@ html {
 		top .35s ease;
 }
 
-.aisf-nav-inner {
-	max-width: var(--wp--style--global--wide-size);
-	margin: 0 auto;
-}
-
 .aisf-nav.is-floating {
 	top: 12px;
-	left: auto;
-	right: auto;
 	width: calc(100% - 24px);
 	max-width: var(--wp--style--global--wide-size);
 	margin: 0 auto;

@@ -1,0 +1,87 @@
+/*
+Theme Name: AISF
+Theme URI: https://ai-sf.it
+Author: AISF
+Description: Block theme for the Italian Association of Physics Students. Built on warm paper tones, deep navy, and three brand accents. Delegates most styling to theme.json.
+Tags: full-site-editing, block-patterns, one-column, two-columns, three-columns, grid-layout
+Tested up to: 6.9
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: aisf
+*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+img,
+figure {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* Aurora body background */
+body {
+	background-color: var(--wp--preset--color--paper);
+	background-image:
+		radial-gradient(60% 50% at 18% 12%, rgba(140, 200, 240, 0.85) 0%, rgba(140, 200, 240, 0) 70%),
+		radial-gradient(55% 45% at 50% 4%, rgba(255, 250, 245, 0.95) 0%, rgba(255, 250, 245, 0) 65%),
+		radial-gradient(60% 55% at 88% 14%, rgba(232, 168, 168, 0.85) 0%, rgba(232, 168, 168, 0) 70%),
+		radial-gradient(70% 60% at 95% 90%, rgba(210, 60, 100, 0.75) 0%, rgba(210, 60, 100, 0) 70%),
+		radial-gradient(70% 65% at 8% 95%, rgba(120, 80, 160, 0.75) 0%, rgba(120, 80, 160, 0) 70%);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+/* Floating nav glass effect when sticky */
+.is-aisf-nav-sticky {
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* Card hover lift */
+.aisf-card:hover {
+	transform: translateY(-3px);
+}
+
+/* City pulse animation */
+@keyframes aisf-pulse {
+	0% { transform: scale(0.5); opacity: 0.5; }
+	100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Hero credit line */
+.aisf-hero-credit {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	opacity: 0.5;
+}
+
+/* Document row hover */
+.aisf-doc-row:hover {
+	box-shadow: var(--wp--preset--shadow--card);
+}
+
+/* Mandate accordion */
+.aisf-mandate-body {
+	display: none;
+}
+.aisf-mandate-body.open {
+	display: block;
+}

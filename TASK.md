@@ -43,3 +43,11 @@
 - [x] Remove nav-specific glass CSS from style.css (now in core-group.css block style)
 - [x] Clean `core-button.css` — split leaked group/card/cover styles into their own files
 - [x] Create `core-cover.css` for rounded-hero style
+
+## Phase 7: Header v3 — match prototype exactly
+- [x] Create `assets/js/header.js` — scroll listener + dark section detection
+- [x] Enqueue header.js in functions.php
+- [x] Rewrite header.php — transparent, 6 links, clamp logo, proper padding
+- [x] Update style.css — .aisf-nav states + transitions
+- [x] Rewrite core-navigation.css — link styles, over-dark, @media 1100px/720px
+- [x] Remove nav hover underline from theme.json

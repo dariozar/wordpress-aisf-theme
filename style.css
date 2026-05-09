@@ -29,11 +29,42 @@ html {
 	text-rendering: optimizeLegibility;
 }
 
-/* Sticky header — glass effect when scrolled */
-header.wp-block-template-part {
+/* Nav — transparent at top, becomes floating glass when scrolled */
+.aisf-nav {
 	position: sticky;
 	top: 0;
 	z-index: 100;
+	background: transparent;
+	border-radius: 0;
+	transition:
+		background .25s ease,
+		border-color .25s ease,
+		box-shadow .25s ease,
+		border-radius .35s ease,
+		top .35s ease;
+}
+
+.aisf-nav.is-floating {
+	top: 12px;
+	left: 0;
+	right: 0;
+	width: calc(100% - 24px);
+	max-width: var(--wp--style--global--wide-size);
+	margin: 0 auto;
+	border-radius: 16px;
+	background: rgba(247, 242, 236, 0.6);
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	border: 1px solid rgba(14, 24, 48, 0.08);
+	box-shadow:
+		0 8px 32px -12px rgba(14, 24, 48, 0.18),
+		0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+.aisf-nav.is-floating.over-dark {
+	background: rgba(14, 24, 48, 0.32);
+	border-color: rgba(247, 242, 236, 0.18);
+	box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.35);
 }
 
 /* Footer link hover */

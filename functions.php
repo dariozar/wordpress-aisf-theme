@@ -31,6 +31,20 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_fonts' );
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_fonts' );
 
 /**
+ * Enqueue scripts.
+ */
+function enqueue_scripts() {
+	wp_enqueue_script(
+		'aisf-header',
+		get_template_directory_uri() . '/assets/js/header.js',
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_scripts' );
+
+/**
  * Enqueue theme stylesheet.
  */
 function enqueue_style_sheet() {

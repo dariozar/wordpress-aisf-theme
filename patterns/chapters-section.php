@@ -4,7 +4,7 @@
  * Slug: aisf/chapters-section
  * Description: Map + chapter list 2-column layout.
  * Categories: aisf/sections
- * Keywords: chapters, map, cities
+ * Keywords: chapters, map
  * Viewport Width: 1500
  * Inserter: true
  */
@@ -15,10 +15,10 @@
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|10","left":"var:preset|spacing|10"}}}} -->
 <div class="wp-block-columns">
 
-<!-- wp:column {"width":"48%"} -->
-<div class="wp-block-column" style="flex-basis:48%">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}},"textColor":"text-muted"} -->
-<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">04 &mdash; Comitati locali</p>
+<!-- wp:column -->
+<div class="wp-block-column">
+<!-- wp:paragraph {"className":"is-style-tag","style":{"typography":{"letterSpacing":"0.14em","fontSize":"12px"},"spacing":{"margin":{"bottom":"var:preset|spacing|2"}}}} -->
+<p class="is-style-tag" style="font-size:12px;letter-spacing:0.14em;margin-bottom:var(--wp--preset--spacing--2)">04 &mdash; Comitati locali</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"style":{"spacing":{"margin":{"top":"var:preset|spacing|2"}}}} -->
@@ -54,8 +54,8 @@
 </div>
 <!-- /wp:column -->
 
-<!-- wp:column {"width":"48%"} -->
-<div class="wp-block-column" style="flex-basis:48%">
+<!-- wp:column -->
+<div class="wp-block-column">
 <!-- wp:group {"style":{"border":{"radius":"var:preset|border-radius|lg","width":"1px","style":"dashed"},"spacing":{"padding":{"top":"var:preset|spacing|6","bottom":"var:preset|spacing|6","left":"var:preset|spacing|6","right":"var:preset|spacing|6"}}},"borderColor":"rule-light","backgroundColor":"paper-2","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-paper-2-background-color has-background has-border-color has-rule-light-border-color" style="border-style:dashed;border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--6);padding-right:var(--wp--preset--spacing--6);padding-bottom:var(--wp--preset--spacing--6);padding-left:var(--wp--preset--spacing--6)">
 

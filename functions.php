@@ -17,7 +17,21 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
 /**
- * Enqueue styles.
+ * Enqueue Google Fonts.
+ */
+function enqueue_fonts() {
+	wp_enqueue_style(
+		'aisf-fonts',
+		'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap',
+		array(),
+		null
+	);
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_fonts' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_fonts' );
+
+/**
+ * Enqueue theme stylesheet.
  */
 function enqueue_style_sheet() {
 	wp_enqueue_style(
@@ -261,6 +275,13 @@ function register_block_styles() {
 			'warm'      => __( 'Warm', 'aisf' ),
 			'ghost'     => __( 'Ghost', 'aisf' ),
 			'outline'   => __( 'Outline', 'aisf' ),
+		),
+		'core/paragraph'   => array(
+			'tag'            => __( 'Tag', 'aisf' ),
+			'tag-tangerine'  => __( 'Tag Tangerine', 'aisf' ),
+			'tag-mint'       => __( 'Tag Mint', 'aisf' ),
+			'tag-blush'      => __( 'Tag Blush', 'aisf' ),
+			'tag-dark'       => __( 'Tag Dark', 'aisf' ),
 		),
 		'core/group'       => array(
 			'card-tangerine' => __( 'Tangerine Card', 'aisf' ),

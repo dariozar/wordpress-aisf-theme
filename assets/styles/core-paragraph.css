@@ -1,0 +1,63 @@
+/* Tag / Pill — mono base */
+.is-style-tag {
+	display: inline-flex !important;
+	align-items: center;
+	gap: 6px;
+	padding: 5px 11px !important;
+	border-radius: 999px !important;
+	font-family: var(--wp--preset--font-family--mono) !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	background: rgba(14, 24, 48, 0.06) !important;
+	color: var(--wp--preset--color--ink) !important;
+	margin: 0 !important;
+}
+
+.is-style-tag-tangerine {
+	padding: 5px 11px !important;
+	border-radius: 999px !important;
+	font-family: var(--wp--preset--font-family--mono) !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	background: var(--wp--preset--color--tangerine) !important;
+	color: var(--wp--preset--color--ink) !important;
+	margin: 0 !important;
+}
+
+.is-style-tag-mint {
+	padding: 5px 11px !important;
+	border-radius: 999px !important;
+	font-family: var(--wp--preset--font-family--mono) !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	background: var(--wp--preset--color--mint) !important;
+	color: var(--wp--preset--color--ink) !important;
+	margin: 0 !important;
+}
+
+.is-style-tag-blush {
+	padding: 5px 11px !important;
+	border-radius: 999px !important;
+	font-family: var(--wp--preset--font-family--mono) !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	background: var(--wp--preset--color--blush) !important;
+	color: var(--wp--preset--color--ink) !important;
+	margin: 0 !important;
+}
+
+.is-style-tag-dark {
+	padding: 5px 11px !important;
+	border-radius: 999px !important;
+	font-family: var(--wp--preset--font-family--mono) !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	background: var(--wp--preset--color--ink) !important;
+	color: var(--wp--preset--color--paper) !important;
+	margin: 0 !important;
+}

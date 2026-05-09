@@ -9,18 +9,18 @@
  * Inserter: true
  */
 ?>
-<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/group-photo.jpg","dimRatio":60,"overlayColor":"ink","focalPoint":{"x":0.5,"y":0.35},"minHeight":760,"align":"full","className":"is-style-rounded-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|11","bottom":"112px"}},"border":{"radius":{"bottomLeft":"var:preset|border-radius|xl","bottomRight":"var:preset|border-radius|xl"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull is-style-rounded-hero" style="border-bottom-left-radius:var(--wp--preset--border-radius--xl);border-bottom-right-radius:var(--wp--preset--border-radius--xl);min-height:760px;padding-top:var(--wp--preset--spacing--11);padding-bottom:112px"><span aria-hidden="true" class="wp-block-cover__background has-ink-background-color has-background-dim-60 has-background-dim"></span><div class="wp-block-cover__inner-container">
+<!-- wp:cover {"url":"<?php echo esc_url( get_template_directory_uri() ); ?>/assets/group-photo.jpg","dimRatio":70,"overlayColor":"ink","focalPoint":{"x":0.5,"y":0.35},"minHeight":100,"align":"full","className":"is-style-rounded-hero","style":{"spacing":{"padding":{"top":"120px","bottom":"112px","left":"var:preset|spacing|5","right":"var:preset|spacing|5"}},"border":{"radius":{"bottomLeft":"var:preset|border-radius|xl","bottomRight":"var:preset|border-radius|xl"}}},"layout":{"type":"constrained","wideSize":"1200px"}} -->
+<div class="wp-block-cover alignfull is-style-rounded-hero" style="border-bottom-left-radius:var(--wp--preset--border-radius--xl);border-bottom-right-radius:var(--wp--preset--border-radius--xl);min-height:100vh;padding-top:120px;padding-right:var(--wp--preset--spacing--5);padding-bottom:112px;padding-left:var(--wp--preset--spacing--5)"><span aria-hidden="true" class="wp-block-cover__background has-ink-background-color has-background-dim-70 has-background-dim"></span><div class="wp-block-cover__inner-container">
 
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|7"},"color":{"text":"var:preset|color|paper"}},"layout":{"type":"constrained"},"metadata":{"name":"Hero Content"}} -->
-<div class="wp-block-group has-paper-color has-text-color">
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|7"}},"layout":{"type":"constrained","wideSize":"780px"}} -->
+<div class="wp-block-group">
 
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","fontStyle":"normal","fontWeight":"400","letterSpacing":"0.08em","textTransform":"uppercase"},"elements":{"link":{"color":{"text":"var:preset|color|paper"}}},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"12px","right":"12px"}},"border":{"radius":"999px"}},"backgroundColor":"ink-2"} -->
-<p class="has-ink-2-background-color has-text-color has-background has-link-color" style="border-radius:999px;font-family:var(--wp--preset--font-family--mono);font-size:11px;font-style:normal;font-weight:400;letter-spacing:0.08em;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px;text-transform:uppercase">Una rete di 1.200 studenti di fisica</p>
+<!-- wp:paragraph {"className":"is-style-tag-dark","style":{"typography":{"letterSpacing":"0.12em"}}} -->
+<p class="is-style-tag-dark" style="letter-spacing:0.12em">Una rete di 1.200 studenti di fisica</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(64px, 8.5vw, 128px)","lineHeight":"0.92","letterSpacing":"-0.035em"},"spacing":{"margin":{"top":"var:preset|spacing|7","bottom":"0"}}}} -->
-<h1 class="wp-block-heading" style="font-size:clamp(64px, 8.5vw, 128px);letter-spacing:-0.035em;line-height:0.92;margin-top:var(--wp--preset--spacing--7);margin-bottom:0">Studenti<br/><span style="font-family:var(--wp--preset--font-family--serif);font-style:italic;font-weight:400;color:var(--wp--preset--color--paper)">per</span> <span style="color:var(--wp--preset--color--tangerine)">studenti.</span></h1>
+<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(64px, 8.5vw, 128px)","lineHeight":"0.92","letterSpacing":"-0.035em"},"spacing":{"margin":{"top":"var:preset|spacing|7","bottom":"0"}},"elements":{"link":{"color":{"text":"var:preset|color|paper"}}}},"textColor":"paper"} -->
+<h1 class="wp-block-heading has-paper-color has-text-color" style="font-size:clamp(64px, 8.5vw, 128px);letter-spacing:-0.035em;line-height:0.92;margin-top:var(--wp--preset--spacing--7);margin-bottom:0">Studenti<br/><span style="font-family:var(--wp--preset--font-family--serif);font-style:italic;font-weight:400;color:var(--wp--preset--color--paper)">per</span> <span style="color:var(--wp--preset--color--tangerine)">studenti.</span></h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"19px","lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|6","bottom":"28px"}}},"textColor":"paper"} -->
@@ -29,8 +29,8 @@
 
 <!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
 <div class="wp-block-buttons">
-<!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="#join">Unisciti ad AISF →</a></div>
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#join">Unisciti ad AISF &rarr;</a></div>
 <!-- /wp:button -->
 <!-- wp:button {"className":"is-style-outline","style":{"color":{"text":"var:preset|color|paper"},"border":{"color":"var:preset|color|paper"}}} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#about" style="border-color:var(--wp--preset--color--paper);color:var(--wp--preset--color--paper)">Cosa facciamo</a></div>
@@ -54,7 +54,6 @@
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
-
 <!-- wp:group {"style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group">
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"28px","letterSpacing":"-0.02em","lineHeight":"1"},"spacing":{"margin":{"bottom":"0"}}},"textColor":"paper"} -->
@@ -65,7 +64,6 @@
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
-
 <!-- wp:group {"style":{"spacing":{"blockGap":"4px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group">
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"28px","letterSpacing":"-0.02em","lineHeight":"1"},"spacing":{"margin":{"bottom":"0"}}},"textColor":"paper"} -->

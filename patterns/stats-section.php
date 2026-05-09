@@ -2,9 +2,9 @@
 /**
  * Title: Stats Section
  * Slug: aisf/stats-section
- * Description: Dark stats panel with large numbers.
+ * Description: Dark stats panel with large tangerine numbers.
  * Categories: aisf/sections
- * Keywords: stats, numbers, facts
+ * Keywords: stats, numbers
  * Viewport Width: 1500
  * Inserter: true
  */
@@ -20,8 +20,8 @@
 
 <!-- wp:column {"width":"45%"} -->
 <div class="wp-block-column" style="flex-basis:45%">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
-<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">06 &mdash; AISF in numeri</p>
+<!-- wp:paragraph {"className":"is-style-tag-dark","style":{"typography":{"letterSpacing":"0.14em","fontSize":"12px"},"spacing":{"margin":{"bottom":"var:preset|spacing|2"}}}} -->
+<p class="is-style-tag-dark" style="font-size:12px;letter-spacing:0.14em;margin-bottom:var(--wp--preset--spacing--2)">06 &mdash; AISF in numeri</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"style":{"spacing":{"margin":{"top":"var:preset|spacing|2"}}}} -->
@@ -51,8 +51,8 @@
 <div class="wp-block-column">
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"}},"textColor":"tangerine"} -->
-<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">1.200+</p>
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}},"textColor":"tangerine"} -->
+<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-bottom:var(--wp--preset--spacing--3)">1.200+</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
 <p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Membri attivi</p>
@@ -62,8 +62,8 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"}},"textColor":"tangerine"} -->
-<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">40</p>
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}},"textColor":"tangerine"} -->
+<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-bottom:var(--wp--preset--spacing--3)">40</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
 <p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Comitati locali</p>
@@ -77,8 +77,8 @@
 <div class="wp-block-column">
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"}},"textColor":"tangerine"} -->
-<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">2014</p>
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}},"textColor":"tangerine"} -->
+<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-bottom:var(--wp--preset--spacing--3)">2014</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
 <p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Fondazione</p>
@@ -88,8 +88,8 @@
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"}},"textColor":"tangerine"} -->
-<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">240</p>
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|display","fontWeight":"600","fontSize":"clamp(40px, 6vw, 64px)","lineHeight":"1","letterSpacing":"-0.03em"},"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}},"textColor":"tangerine"} -->
+<p class="has-tangerine-color has-text-color" style="font-family:var(--wp--preset--font-family--display);font-size:clamp(40px, 6vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-bottom:var(--wp--preset--spacing--3)">240</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
 <p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Scuole raggiunte</p>

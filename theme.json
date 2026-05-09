@@ -68,7 +68,7 @@
 			}
 		},
 		"layout": {
-			"contentSize": "740px",
+			"contentSize": "1200px",
 			"wideSize": "1200px"
 		},
 		"shadow": {
@@ -119,15 +119,7 @@
 				{
 					"fontFamily": "\"Space Grotesk\", system-ui, sans-serif",
 					"name": "Space Grotesk",
-					"slug": "display",
-					"fontFace": [
-						{
-							"fontDisplay": "swap",
-							"fontFamily": "\"Space Grotesk\"",
-							"fontWeight": "300 700",
-							"src": ["https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"]
-						}
-					]
+					"slug": "display"
 				},
 				{
 					"fontFamily": "\"Newsreader\", Georgia, serif",

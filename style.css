@@ -18,10 +18,45 @@ Text Domain: aisf
 	box-sizing: border-box;
 }
 
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
 html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+}
+
+/* Sticky header — glass effect when scrolled */
+header.wp-block-template-part {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.aisf-nav-glass {
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	background: rgba(247, 242, 236, 0.6) !important;
+	border-color: rgba(14, 24, 48, 0.08) !important;
+	box-shadow: 0 8px 32px -12px rgba(14, 24, 48, 0.18), 0 1px 0 rgba(255,255,255,0.5) inset !important;
+}
+
+/* Footer link hover */
+.wp-block-template-part footer a:hover,
+footer.wp-block-template-part a:hover {
+	color: var(--wp--preset--color--tangerine);
+	transition: color 0.15s ease;
+}
+
+/* Card hover lift */
+.aisf-card {
+	transition: transform 0.2s ease;
+}
+.aisf-card:hover {
+	transform: translateY(-3px);
 }
 
 img,
@@ -46,42 +81,13 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
-
-/* Floating nav glass effect when sticky */
-.is-aisf-nav-sticky {
-	backdrop-filter: blur(20px) saturate(160%);
-	-webkit-backdrop-filter: blur(20px) saturate(160%);
-}
-
-/* Card hover lift */
-.aisf-card:hover {
-	transform: translateY(-3px);
-}
-
 /* City pulse animation */
 @keyframes aisf-pulse {
 	0% { transform: scale(0.5); opacity: 0.5; }
 	100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* Hero credit line */
-.aisf-hero-credit {
-	font-family: var(--wp--preset--font-family--mono);
-	font-size: 10px;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	opacity: 0.5;
-}
-
 /* Document row hover */
 .aisf-doc-row:hover {
 	box-shadow: var(--wp--preset--shadow--card);
-}
-
-/* Mandate accordion */
-.aisf-mandate-body {
-	display: none;
-}
-.aisf-mandate-body.open {
-	display: block;
 }

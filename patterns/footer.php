@@ -10,96 +10,90 @@
  * Inserter: true
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|7","right":"var:preset|spacing|4","left":"var:preset|spacing|4"},"margin":{"top":"var:preset|spacing|9","bottom":"0"}},"border":{"radius":{"topLeft":"var:preset|border-radius|xl","topRight":"var:preset|border-radius|xl"}}},"backgroundColor":"ink","textColor":"paper","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-paper-color has-ink-background-color has-text-color has-background" style="border-top-left-radius:var(--wp--preset--border-radius--xl);border-top-right-radius:var(--wp--preset--border-radius--xl);margin-top:var(--wp--preset--spacing--9);margin-bottom:0;padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--4);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--4)">
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"64px","bottom":"32px","right":"var:preset|spacing|4","left":"var:preset|spacing|4"},"margin":{"top":"var:preset|spacing|9","bottom":"0"}},"border":{"radius":{"topLeft":"var:preset|border-radius|xl","topRight":"var:preset|border-radius|xl"}}},"backgroundColor":"ink","textColor":"paper","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-paper-color has-ink-background-color has-text-color has-background" style="border-top-left-radius:var(--wp--preset--border-radius--xl);border-top-right-radius:var(--wp--preset--border-radius--xl);margin-top:var(--wp--preset--spacing--9);margin-bottom:0;padding-top:64px;padding-right:var(--wp--preset--spacing--4);padding-bottom:32px;padding-left:var(--wp--preset--spacing--4)">
 
-<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|7","left":"var:preset|spacing|8"}}}} -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"48px","left":"48px"}}}} -->
 <div class="wp-block-columns alignwide">
 
-<!-- wp:column {"width":"36%"} -->
-<div class="wp-block-column" style="flex-basis:36%">
+<!-- wp:column {"width":"37.5%"} -->
+<div class="wp-block-column" style="flex-basis:37.5%">
 <!-- wp:image {"width":56,"sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/aisf-logo.png" alt="AISF" style="width:56px"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|text-on-dark-muted"}}}},"textColor":"text-on-dark-muted","fontSize":"small"} -->
-<p class="has-text-on-dark-muted-color has-text-color has-link-color has-small-font-size">Rete di volontariato di studenti universitari di fisica negli atenei italiani. Indipendente, no-profit, fondata nel 2014.</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.55"}},"textColor":"text-on-dark-muted"} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-size:14px;line-height:1.55">Rete di volontariato di studenti universitari di fisica negli atenei italiani. Indipendente, no-profit, fondata nel 2014.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->
 
-<!-- wp:column -->
-<div class="wp-block-column">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","textTransform":"uppercase","letterSpacing":"0.14em","fontSize":"11px"}},"textColor":"text-on-dark-muted"} -->
-<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Rete', 'aisf' ); ?></p>
+<!-- wp:column {"width":"20.8%"} -->
+<div class="wp-block-column" style="flex-basis:20.8%">
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","fontWeight":"500","letterSpacing":"0.14em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Rete', 'aisf' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"}}},"className":"is-style-default"} -->
-<ul style="padding-left:0" class="is-style-default">
-<!-- wp:list-item -->
-<li><a href="/" data-type="page" data-id="home"><?php esc_html_e( 'Chi siamo', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/esecutivo" data-type="page" data-id="esecutivo"><?php esc_html_e( 'Direttivo', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/comitati" data-type="page" data-id="comitati"><?php esc_html_e( 'Comitati', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/documenti" data-type="page" data-id="documenti"><?php esc_html_e( 'Bilancio', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"var:preset|spacing|5","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:var(--wp--preset--spacing--5);margin-bottom:var(--wp--preset--spacing--3)"><a href="/">Chi siamo</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="/esecutivo">Direttivo</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="/comitati">Comitati</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:0"><a href="/documenti">Bilancio</a></p>
+<!-- /wp:paragraph -->
+
 </div>
 <!-- /wp:column -->
 
-<!-- wp:column -->
-<div class="wp-block-column">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","textTransform":"uppercase","letterSpacing":"0.14em","fontSize":"11px"}},"textColor":"text-on-dark-muted"} -->
-<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Programmi', 'aisf' ); ?></p>
+<!-- wp:column {"width":"20.8%"} -->
+<div class="wp-block-column" style="flex-basis:20.8%">
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","fontWeight":"500","letterSpacing":"0.14em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Programmi', 'aisf' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"}}}} -->
-<ul style="padding-left:0">
-<!-- wp:list-item -->
-<li><a href="/eventi" data-type="page" data-id="eventi"><?php esc_html_e( 'Congresso nazionale', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/eventi" data-type="page" data-id="eventi"><?php esc_html_e( 'Scuola invernale', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/#projects"><?php esc_html_e( 'Quaderno di Laboratorio', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="/#projects"><?php esc_html_e( 'Programma per le Scuole', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"var:preset|spacing|5","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:var(--wp--preset--spacing--5);margin-bottom:var(--wp--preset--spacing--3)"><a href="/eventi">Congresso nazionale</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="/eventi">Scuola invernale</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="/#projects">Quaderno di Laboratorio</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:0"><a href="/#projects">Programma per le Scuole</a></p>
+<!-- /wp:paragraph -->
+
 </div>
 <!-- /wp:column -->
 
-<!-- wp:column -->
-<div class="wp-block-column">
-<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","textTransform":"uppercase","letterSpacing":"0.14em","fontSize":"11px"}},"textColor":"text-on-dark-muted"} -->
-<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Resta in contatto', 'aisf' ); ?></p>
+<!-- wp:column {"width":"20.8%"} -->
+<div class="wp-block-column" style="flex-basis:20.8%">
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","fontWeight":"500","letterSpacing":"0.14em","textTransform":"uppercase"}},"textColor":"text-on-dark-muted"} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase"><?php esc_html_e( 'Resta in contatto', 'aisf' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"padding":{"left":"0"}}}} -->
-<ul style="padding-left:0">
-<!-- wp:list-item -->
-<li><a href="#join"><?php esc_html_e( 'Newsletter', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="#"><?php esc_html_e( 'Mastodon', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="#"><?php esc_html_e( 'GitHub', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><a href="#"><?php esc_html_e( 'Contatti', 'aisf' ); ?></a></li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"var:preset|spacing|5","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:var(--wp--preset--spacing--5);margin-bottom:var(--wp--preset--spacing--3)"><a href="#join">Newsletter</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="#">Mastodon</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|3"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:var(--wp--preset--spacing--3)"><a href="#">GitHub</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.45"},"spacing":{"margin":{"top":"0","bottom":"0"}}},"textColor":"paper"} -->
+<p class="has-paper-color has-text-color" style="font-size:14px;line-height:1.45;margin-top:0;margin-bottom:0"><a href="#">Contatti</a></p>
+<!-- /wp:paragraph -->
+
 </div>
 <!-- /wp:column -->
 
@@ -115,7 +109,6 @@
 <!-- wp:paragraph -->
 <p>&copy; 2026 AISF &middot; Bologna, IT</p>
 <!-- /wp:paragraph -->
-
 <!-- wp:paragraph -->
 <p>v1.0</p>
 <!-- /wp:paragraph -->

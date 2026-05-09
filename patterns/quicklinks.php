@@ -2,9 +2,9 @@
 /**
  * Title: Quicklinks
  * Slug: aisf/quicklinks
- * Description: 3-column quicklink cards (Tangerine, Mint, Blush).
+ * Description: 3-column quicklink cards (Tangerine, Mint, Blush dots).
  * Categories: aisf/sections
- * Keywords: quicklinks, cards, navigation
+ * Keywords: quicklinks, cards
  * Viewport Width: 1500
  * Inserter: true
  */
@@ -17,12 +17,12 @@
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|6","bottom":"var:preset|spacing|6","left":"var:preset|spacing|6","right":"var:preset|spacing|6"},"blockGap":"var:preset|spacing|3"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"},"shadow":"var:preset|shadow|lift"},"borderColor":"rule-light","backgroundColor":"paper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-paper-background-color has-background has-border-color has-rule-light-border-color" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--6);padding-right:var(--wp--preset--spacing--6);padding-bottom:var(--wp--preset--spacing--6);padding-left:var(--wp--preset--spacing--6);box-shadow:var(--wp--preset--shadow--lift)">
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|tangerine"}}}},"textColor":"tangerine"} -->
-<p class="has-tangerine-color has-text-color has-link-color">●</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"10px","lineHeight":"1"},"spacing":{"margin":{"bottom":"var:preset|spacing|1"}}},"textColor":"tangerine"} -->
+<p class="has-tangerine-color has-text-color" style="font-size:10px;line-height:1;margin-bottom:var(--wp--preset--spacing--1)">●</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-weight:600">Chi &egrave; AISF?</h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600","letterSpacing":"-0.01em"},"spacing":{"margin":{"top":"var:preset|spacing|1"}}}} -->
+<h3 class="wp-block-heading" style="font-size:18px;font-weight:600;letter-spacing:-0.01em;margin-top:var(--wp--preset--spacing--1)">Chi &egrave; AISF?</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.5"}},"textColor":"text-muted"} -->
@@ -43,12 +43,12 @@
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|6","bottom":"var:preset|spacing|6","left":"var:preset|spacing|6","right":"var:preset|spacing|6"},"blockGap":"var:preset|spacing|3"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"},"shadow":"var:preset|shadow|lift"},"borderColor":"rule-light","backgroundColor":"paper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-paper-background-color has-background has-border-color has-rule-light-border-color" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--6);padding-right:var(--wp--preset--spacing--6);padding-bottom:var(--wp--preset--spacing--6);padding-left:var(--wp--preset--spacing--6);box-shadow:var(--wp--preset--shadow--lift)">
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|mint"}}}},"textColor":"mint"} -->
-<p class="has-mint-color has-text-color has-link-color">●</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"10px","lineHeight":"1"},"spacing":{"margin":{"bottom":"var:preset|spacing|1"}}},"textColor":"mint"} -->
+<p class="has-mint-color has-text-color" style="font-size:10px;line-height:1;margin-bottom:var(--wp--preset--spacing--1)">●</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-weight:600">Cosa facciamo</h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600","letterSpacing":"-0.01em"},"spacing":{"margin":{"top":"var:preset|spacing|1"}}}} -->
+<h3 class="wp-block-heading" style="font-size:18px;font-weight:600;letter-spacing:-0.01em;margin-top:var(--wp--preset--spacing--1)">Cosa facciamo</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.5"}},"textColor":"text-muted"} -->
@@ -69,12 +69,12 @@
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|6","bottom":"var:preset|spacing|6","left":"var:preset|spacing|6","right":"var:preset|spacing|6"},"blockGap":"var:preset|spacing|3"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"},"shadow":"var:preset|shadow|lift"},"borderColor":"rule-light","backgroundColor":"paper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-paper-background-color has-background has-border-color has-rule-light-border-color" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--6);padding-right:var(--wp--preset--spacing--6);padding-bottom:var(--wp--preset--spacing--6);padding-left:var(--wp--preset--spacing--6);box-shadow:var(--wp--preset--shadow--lift)">
 
-<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|blush"}}}},"textColor":"blush"} -->
-<p class="has-blush-color has-text-color has-link-color">●</p>
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"10px","lineHeight":"1"},"spacing":{"margin":{"bottom":"var:preset|spacing|1"}}},"textColor":"blush"} -->
+<p class="has-blush-color has-text-color" style="font-size:10px;line-height:1;margin-bottom:var(--wp--preset--spacing--1)">●</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600"}}} -->
-<h3 class="wp-block-heading" style="font-size:18px;font-weight:600">Come partecipare</h3>
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"18px","fontWeight":"600","letterSpacing":"-0.01em"},"spacing":{"margin":{"top":"var:preset|spacing|1"}}}} -->
+<h3 class="wp-block-heading" style="font-size:18px;font-weight:600;letter-spacing:-0.01em;margin-top:var(--wp--preset--spacing--1)">Come partecipare</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.5"}},"textColor":"text-muted"} -->

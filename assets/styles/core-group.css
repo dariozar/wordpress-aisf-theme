@@ -1,0 +1,58 @@
+/* Glass — paper semi-transparent (light surfaces) */
+.is-style-glass {
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	background: rgba(247, 242, 236, 0.6) !important;
+	border: 1px solid rgba(14, 24, 48, 0.08) !important;
+	box-shadow:
+		0 8px 32px -12px rgba(14, 24, 48, 0.18),
+		0 1px 0 rgba(255, 255, 255, 0.5) inset !important;
+}
+
+/* Glass Dark — ink semi-transparent (dark surfaces) */
+.is-style-glass-dark {
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	background: rgba(14, 24, 48, 0.32) !important;
+	border: 1px solid rgba(247, 242, 236, 0.18) !important;
+	box-shadow:
+		0 8px 40px -12px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Card style variations */
+.is-style-card-tangerine {
+	background: var(--wp--preset--color--tangerine) !important;
+	color: var(--wp--preset--color--ink) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}
+.is-style-card-mint {
+	background: var(--wp--preset--color--mint) !important;
+	color: var(--wp--preset--color--ink) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}
+.is-style-card-blush {
+	background: var(--wp--preset--color--blush) !important;
+	color: var(--wp--preset--color--ink) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}
+.is-style-card-sky {
+	background: var(--wp--preset--gradient--sky-card) !important;
+	color: var(--wp--preset--color--ink) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}
+.is-style-paper {
+	background: var(--wp--preset--color--paper) !important;
+	border: 1px solid var(--wp--preset--color--rule-light) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}
+.is-style-dark {
+	background: var(--wp--preset--color--ink-2) !important;
+	color: var(--wp--preset--color--paper) !important;
+	border-radius: var(--wp--preset--border-radius--lg) !important;
+	padding: var(--wp--preset--spacing--7) !important;
+}

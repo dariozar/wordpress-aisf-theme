@@ -1,0 +1,5 @@
+/* Cover — Rounded bottom hero */
+.is-style-rounded-hero {
+	border-bottom-left-radius: var(--wp--preset--border-radius--xl) !important;
+	border-bottom-right-radius: var(--wp--preset--border-radius--xl) !important;
+}

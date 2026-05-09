@@ -290,6 +290,8 @@ function register_block_styles() {
 			'card-sky'       => __( 'Sky Card', 'aisf' ),
 			'paper'          => __( 'Paper Card', 'aisf' ),
 			'dark'           => __( 'Dark Card', 'aisf' ),
+			'glass'          => __( 'Glass', 'aisf' ),
+			'glass-dark'     => __( 'Glass Dark', 'aisf' ),
 		),
 		'core/cover'       => array(
 			'rounded-hero' => __( 'Rounded Bottom', 'aisf' ),

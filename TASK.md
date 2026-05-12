@@ -51,3 +51,15 @@
 - [x] Update style.css — .aisf-nav states + transitions
 - [x] Rewrite core-navigation.css — link styles, over-dark, @media 1100px/720px
 - [x] Remove nav hover underline from theme.json
+
+## Phase 8: Design system audit — typography, buttons, tags, cards, spacing
+- [x] Fix font sizes: small=15px flat, base=16px flat, medium=22px flat, large=28-40px, x-large=36-56px
+- [x] Fix body line-height: 1.55 → 1.5
+- [x] Fix button padding: 0.75em/1.5em → 12px/22px
+- [x] Fix button font-size: 15px (not fluid small)
+- [x] Fix sky-card gradient: 155deg, 50% stop (was 160deg, 60%)
+- [x] core-button.css: add hover translateY(-1px) with transitions
+- [x] core-paragraph.css: fix dark tag bg → rgba(247,242,236,0.08) (was solid ink)
+- [x] style.css: add .aisf-section @media ≤900px: 80px→40px top/bottom padding
+- [x] style.css: add card paragraph default text-muted color for is-style-paper/dark/aisf-card
+- [x] Add aisf-section class to all 7 section wrapper patterns

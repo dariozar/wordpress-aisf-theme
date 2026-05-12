@@ -57,7 +57,7 @@
 	font-size: 11px !important;
 	letter-spacing: 0.08em !important;
 	text-transform: uppercase !important;
-	background: var(--wp--preset--color--ink) !important;
+	background: rgba(247, 242, 236, 0.08) !important;
 	color: var(--wp--preset--color--paper) !important;
 	margin: 0 !important;
 }

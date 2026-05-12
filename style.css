@@ -114,3 +114,18 @@ body {
 .aisf-doc-row:hover {
 	box-shadow: var(--wp--preset--shadow--card);
 }
+
+/* Card paragraphs — default muted color */
+.is-style-paper p,
+.is-style-dark p,
+.aisf-card p {
+	color: var(--wp--preset--color--text-muted);
+}
+
+/* Section spacing on mobile */
+@media (max-width: 900px) {
+	.aisf-section {
+		padding-top: var(--wp--preset--spacing--8) !important;
+		padding-bottom: var(--wp--preset--spacing--8) !important;
+	}
+}

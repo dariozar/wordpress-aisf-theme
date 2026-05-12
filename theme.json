@@ -22,7 +22,7 @@
 				{
 					"name": "Sky Card",
 					"slug": "sky-card",
-					"gradient": "linear-gradient(160deg, #DCE9F7 0%, #B8D4F0 60%, #94B8DA 100%)"
+					"gradient": "linear-gradient(155deg, #DCE9F7 0%, #B8D4F0 50%, #94B8DA 100%)"
 				},
 				{
 					"name": "Ink Hero",
@@ -140,31 +140,31 @@
 					"name": "Extra Small"
 				},
 				{
-					"fluid": { "min": "0.812rem", "max": "0.938rem" },
+					"fluid": { "min": "0.938rem", "max": "0.938rem" },
 					"size": "0.938rem",
 					"slug": "small",
 					"name": "Small"
 				},
 				{
-					"fluid": { "min": "0.938rem", "max": "1.063rem" },
-					"size": "1.063rem",
+					"fluid": { "min": "1rem", "max": "1rem" },
+					"size": "1rem",
 					"slug": "base",
 					"name": "Base"
 				},
 				{
-					"fluid": { "min": "1.063rem", "max": "1.25rem" },
-					"size": "1.25rem",
+					"fluid": { "min": "1.375rem", "max": "1.375rem" },
+					"size": "1.375rem",
 					"slug": "medium",
 					"name": "Medium"
 				},
 				{
-					"fluid": { "min": "1.25rem", "max": "1.75rem" },
-					"size": "1.75rem",
+					"fluid": { "min": "1.75rem", "max": "2.5rem" },
+					"size": "2.5rem",
 					"slug": "large",
 					"name": "Large"
 				},
 				{
-					"fluid": { "min": "1.75rem", "max": "3.5rem" },
+					"fluid": { "min": "2.25rem", "max": "3.5rem" },
 					"size": "3.5rem",
 					"slug": "x-large",
 					"name": "Extra Large"
@@ -189,14 +189,14 @@
 				"typography": {
 					"fontFamily": "var:preset|font-family|display",
 					"fontWeight": "500",
-					"fontSize": "var:preset|font-size|small"
+					"fontSize": "15px"
 				},
 				"spacing": {
 					"padding": {
-						"top": "0.75em",
-						"right": "1.5em",
-						"bottom": "0.75em",
-						"left": "1.5em"
+						"top": "12px",
+						"right": "22px",
+						"bottom": "12px",
+						"left": "22px"
 					}
 				}
 			},
@@ -302,8 +302,17 @@
 					"background": "var:preset|color|mint",
 					"text": "var:preset|color|ink"
 				},
+				"spacing": {
+					"padding": {
+						"top": "12px",
+						"right": "22px",
+						"bottom": "12px",
+						"left": "22px"
+					}
+				},
 				"typography": {
 					"fontFamily": "var:preset|font-family|display",
+					"fontSize": "15px",
 					"fontWeight": "500"
 				},
 				":hover": {
@@ -365,7 +374,7 @@
 			"fontFamily": "var:preset|font-family|display",
 			"fontSize": "var:preset|font-size|base",
 			"fontWeight": "400",
-			"lineHeight": "1.55"
+			"lineHeight": "1.5"
 		}
 	},
 	"customTemplates": [

@@ -1,3 +1,11 @@
+/* All buttons — hover lift */
+.wp-block-button__link {
+	transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+.wp-block-button__link:hover {
+	transform: translateY(-1px);
+}
+
 /* Button — Secondary (ink outline) */
 .wp-block-button.is-style-secondary .wp-block-button__link {
 	background: transparent;

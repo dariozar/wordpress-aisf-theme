@@ -20,13 +20,12 @@
 <figure class="wp-block-image size-full is-resized"><a href="/"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/aisf-logo.png" alt="AISF" style="width:clamp(32px, 4.5vw, 40px)"/></a></figure>
 <!-- /wp:image -->
 
-<!-- wp:navigation {"ref":0,"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"clamp(16px, 2.2vw, 28px)"}}} -->
+<!-- wp:navigation {"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"clamp(16px, 2.2vw, 28px)"}}} -->
 <!-- wp:navigation-link {"label":"Chi siamo","url":"/#about","kind":"custom","type":"custom"} /-->
 <!-- wp:navigation-link {"label":"Eventi","url":"/eventi","kind":"custom","type":"custom"} /-->
 <!-- wp:navigation-link {"label":"Progetti","url":"/#projects","kind":"custom","type":"custom"} /-->
 <!-- wp:navigation-link {"label":"Comitati","url":"/comitati","kind":"custom","type":"custom"} /-->
 <!-- wp:navigation-link {"label":"Documenti","url":"/documenti","kind":"custom","type":"custom"} /-->
-<!-- wp:navigation-link {"label":"Sistema","url":"/documenti","kind":"custom","type":"custom"} /-->
 <!-- /wp:navigation -->
 
 <!-- wp:group {"className":"aisf-nav-cta","style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->

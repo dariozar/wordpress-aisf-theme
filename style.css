@@ -104,12 +104,6 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
-/* City pulse animation */
-@keyframes aisf-pulse {
-	0% { transform: scale(0.5); opacity: 0.5; }
-	100% { transform: scale(1.6); opacity: 0; }
-}
-
 /* Document row hover */
 .aisf-doc-row:hover {
 	box-shadow: var(--wp--preset--shadow--card);

@@ -17,6 +17,20 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
 /**
+ * Enqueue Google Fonts.
+ */
+function enqueue_fonts() {
+	wp_enqueue_style(
+		'aisf-fonts',
+		'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap',
+		array(),
+		null
+	);
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_fonts' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_fonts' );
+
+/**
  * Enqueue scripts.
  */
 function enqueue_scripts() {

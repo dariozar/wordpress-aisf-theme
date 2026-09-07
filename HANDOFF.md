@@ -102,9 +102,9 @@ wp-content/themes/aisf/
 ### Typography
 | Font Family | Use | Loading |
 |-------------|-----|---------|
-| Space Grotesk (400-700) | Display, body, UI | Self-hosted woff2 (`assets/fonts/`) |
-| Newsreader (400 italic) | Serif moments, quotes | Self-hosted woff2 (`assets/fonts/`) |
-| JetBrains Mono | Mono data, meta, tags | Self-hosted woff2 (`assets/fonts/`) |
+| Space Grotesk (400-700) | Display, body, UI | Google Fonts (swap) |
+| Newsreader (400 italic) | Serif moments, quotes | Google Fonts |
+| JetBrains Mono | Mono data, meta, tags | Google Fonts |
 
 Font sizes: 7 fluid sizes from `x-small` (12px) to `xx-large` (80px). Headings: h1 at x-large (56px), h2 at large (28px), h3 at medium (22px).
 

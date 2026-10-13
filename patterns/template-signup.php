@@ -1,0 +1,326 @@
+<?php
+/**
+ * Title: Template — Sign up
+ * Slug: aisf/template-signup
+ * Template Types: page-iscriviti
+ * Description: Membership page: how to join, fees, validity, payment methods.
+ * Categories: aisf/pages
+ * Viewport Width: 1500
+ * Inserter: false
+ */
+?>
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
+<main class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0"><!-- wp:group {"backgroundColor":"ink","textColor":"paper","align":"full","style":{"spacing":{"padding":{"top":"140px","bottom":"var:preset|spacing|10"}},"border":{"radius":{"bottomLeft":"var:preset|border-radius|xl","bottomRight":"var:preset|border-radius|xl"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-paper-color has-ink-background-color has-text-color has-background" style="border-bottom-left-radius:var(--wp--preset--border-radius--xl);border-bottom-right-radius:var(--wp--preset--border-radius--xl);padding-top:140px;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:paragraph {"textColor":"text-on-dark-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Iscriviti</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(48px, 7vw, 96px)","letterSpacing":"-0.03em","lineHeight":"0.95"},"spacing":{"margin":{"top":"var:preset|spacing|4","bottom":"var:preset|spacing|6"}}}} -->
+<h1 class="wp-block-heading" style="margin-top:var(--wp--preset--spacing--4);margin-bottom:var(--wp--preset--spacing--6);font-size:clamp(48px, 7vw, 96px);letter-spacing:-0.03em;line-height:0.95">Entra nella rete<br><span style="color:var(--wp--preset--color--tangerine)">degli studenti di fisica.</span></h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"textColor":"text-on-dark-muted","style":{"typography":{"fontSize":"18px","lineHeight":"1.55"}}} -->
+<p class="has-text-on-dark-muted-color has-text-color" style="font-size:18px;line-height:1.55">Per diventare soci basta registrarsi online e pagare la quota annuale. AISF conta più di 1400 membri e 19 comitati locali ed è il Comitato Nazionale italiano di IAPS.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|3","margin":{"top":"var:preset|spacing|7"}}}} -->
+<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--7)"><!-- wp:button {"className":"is-style-warm"} -->
+<div class="wp-block-button is-style-warm"><a class="wp-block-button__link wp-element-button" href="https://ai-sf.app/signup">Nuova iscrizione →</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-on-dark"} -->
+<div class="wp-block-button is-style-on-dark"><a class="wp-block-button__link wp-element-button" href="https://ai-sf.app/signin">Accedi e rinnova</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|9","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--9);padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|7"}}}} -->
+<h2 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--7)">Come iscriversi</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns {"className":"aisf-equal","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|5","left":"var:preset|spacing|5"}}}} -->
+<div class="wp-block-columns aisf-equal"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"mint","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
+<div class="wp-block-group aisf-card-stack has-mint-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Passo 1</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Compila il modulo</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">Registrati con il modulo di iscrizione sulla app AISF.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-secondary"} -->
+<div class="wp-block-button is-style-secondary"><a class="wp-block-button__link wp-element-button" href="https://ai-sf.app/signup">Nuova iscrizione →</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center"}} -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"sky","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-sky-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Passo 2</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Paga la quota</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">Seleziona l'opzione «Vuoi pagare la quota d'iscrizione?» e procedi con il pagamento.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontSize":"13px","lineHeight":"1.5"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-size:13px;line-height:1.5">Al momento è attiva solo la carta di credito o debito.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blush","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-blush-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Già socio?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Rinnova l'iscrizione</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">Accedi alla nuova app AISF e segui le indicazioni. Il rinnovo è possibile solo dopo aver ricevuto le credenziali via email dall'IT Commission.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"flex"}} -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-secondary"} -->
+<div class="wp-block-button is-style-secondary"><a class="wp-block-button__link wp-element-button" href="https://ai-sf.app/signin">Accedi e rinnova →</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|3"}}}} -->
+<h2 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--3)">Quote associative</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"textColor":"text-muted","className":"aisf-measure-left","style":{"typography":{"fontSize":"17px","lineHeight":"1.55"},"spacing":{"margin":{"bottom":"var:preset|spacing|7"}}}} -->
+<p class="aisf-measure-left has-text-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--7);font-size:17px;line-height:1.55">Le quote valgono per l'anno corrente. Pagando con carta l'importo è leggermente più alto, per la tariffa applicata dall'operatore di pagamento.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns {"className":"aisf-equal","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|5","left":"var:preset|spacing|5"}}}} -->
+<div class="wp-block-columns aisf-equal"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"tangerine","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-tangerine-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"clamp(48px, 5vw, 64px)","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<h3 class="wp-block-heading" style="margin-top:0;margin-bottom:0;font-size:clamp(48px, 5vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">5 €</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.4","fontWeight":"600"}}} -->
+<p style="font-size:17px;font-weight:600;line-height:1.4">Studenti liceali, di laurea triennale o magistrale</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontSize":"13px","lineHeight":"1.5"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-size:13px;line-height:1.5">Con carta di credito o debito: 5,32 €.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"mint","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-mint-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"clamp(48px, 5vw, 64px)","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<h3 class="wp-block-heading" style="margin-top:0;margin-bottom:0;font-size:clamp(48px, 5vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">15 €</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.4","fontWeight":"600"}}} -->
+<p style="font-size:17px;font-weight:600;line-height:1.4">Studenti di dottorato di ricerca</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontSize":"13px","lineHeight":"1.5"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-size:13px;line-height:1.5">Con carta di credito o debito: 15,69 €.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"blush","className":"aisf-card-stack","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-blush-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"clamp(48px, 5vw, 64px)","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<h3 class="wp-block-heading" style="margin-top:0;margin-bottom:0;font-size:clamp(48px, 5vw, 64px);font-weight:600;letter-spacing:-0.03em;line-height:1">20 €</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.4","fontWeight":"600"}}} -->
+<p style="font-size:17px;font-weight:600;line-height:1.4">Esterni</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontSize":"13px","lineHeight":"1.5"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-size:13px;line-height:1.5">Con carta di credito o debito: 20,53 €.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:heading {"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|7"}}}} -->
+<h2 class="wp-block-heading" style="margin-bottom:var(--wp--preset--spacing--7)">Validità e pagamento</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns {"className":"aisf-equal","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|5","left":"var:preset|spacing|5"}}}} -->
+<div class="wp-block-columns aisf-equal"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"paper","className":"aisf-card-stack","borderColor":"rule-light","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-border-color has-rule-light-border-color has-paper-background-color has-background" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Validità</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Quanto dura l'iscrizione</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">L'anno finanziario di AISF va dal 1 ottobre al 30 settembre e l'iscrizione vale per l'anno in corso. Se ti iscrivi dal 1 giugno in poi, la quota copre anche l'anno successivo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Anno finanziario</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">1 ottobre – 30 settembre</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"paper","className":"aisf-card-stack","borderColor":"rule-light","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-border-color has-rule-light-border-color has-paper-background-color has-background" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Pagamento</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Carta di debito o credito</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">Il pagamento avviene online tramite Stripe. Al momento è l'unica modalità attiva.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Carte europee</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">1,4% + 0,25 €</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Carte non europee</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">2,9% + 0,25 €</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"backgroundColor":"paper","className":"aisf-card-stack","borderColor":"rule-light","style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg","width":"1px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group aisf-card-stack has-border-color has-rule-light-border-color has-paper-background-color has-background" style="border-width:1px;border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"12px","letterSpacing":"0.14em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase">Pagamento</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading" style="font-size:24px;font-weight:600">Bonifico bancario</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1.55"}}} -->
+<p style="font-size:16px;line-height:1.55">Da effettuare entro 15 giorni dalla registrazione online. Con il passaggio alla nuova piattaforma sono accettati soltanto i pagamenti con carta.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Beneficiario</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-size:15px;font-weight:500;line-height:1.4">Associazione Italiana Studenti di Fisica</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">IBAN</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">IT20J0306909606100000133131</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">BIC/SWIFT</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">BCITITMMXXX</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|1"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"textColor":"text-muted","style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"}}} -->
+<p class="has-text-muted-color has-text-color" style="font-family:var(--wp--preset--font-family--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Causale</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"15px","lineHeight":"1.4","fontWeight":"500"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:15px;font-weight:500;line-height:1.4">Iscrizione anno 20xx/xx - NOME COGNOME</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:group {"backgroundColor":"ink","textColor":"paper","style":{"spacing":{"padding":{"top":"var:preset|spacing|9","bottom":"var:preset|spacing|9","left":"var:preset|spacing|7","right":"var:preset|spacing|7"}},"border":{"radius":"var:preset|border-radius|xl"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-paper-color has-ink-background-color has-text-color has-background" style="border-radius:var(--wp--preset--border-radius--xl);padding-top:var(--wp--preset--spacing--9);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--9);padding-left:var(--wp--preset--spacing--7)"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|3"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:heading {"style":{"typography":{"fontSize":"clamp(32px, 4vw, 48px)","letterSpacing":"-0.02em","lineHeight":"1.05"}}} -->
+<h2 class="wp-block-heading" style="font-size:clamp(32px, 4vw, 48px);letter-spacing:-0.02em;line-height:1.05">Hai domande?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"textColor":"text-on-dark-muted","className":"aisf-measure-left","style":{"typography":{"fontSize":"17px","lineHeight":"1.55"}}} -->
+<p class="aisf-measure-left has-text-on-dark-muted-color has-text-color" style="font-size:17px;line-height:1.55">Per dubbi sull'iscrizione puoi scrivere a uno di questi indirizzi.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"typography":{"fontFamily":"var:preset|font-family|mono","fontSize":"17px","lineHeight":"1.9"}}} -->
+<p style="font-family:var(--wp--preset--font-family--mono);font-size:17px;line-height:1.9"><a href="mailto:presidente@ai-sf.it">presidente@ai-sf.it</a><br><a href="mailto:esecutivo@ai-sf.it">esecutivo@ai-sf.it</a><br><a href="mailto:postmaster@ai-sf.it">postmaster@ai-sf.it</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"text-on-dark-muted","className":"aisf-measure-left","style":{"typography":{"fontSize":"13px","lineHeight":"1.55"},"spacing":{"margin":{"top":"var:preset|spacing|5"}}}} -->
+<p class="aisf-measure-left has-text-on-dark-muted-color has-text-color" style="margin-top:var(--wp--preset--spacing--5);font-size:13px;line-height:1.55">Il trattamento dei dati personali avviene secondo l'<a href="https://ai-sf.it/Informativa_Privacy_AISF.pdf">informativa sulla privacy</a>, ai sensi del Regolamento generale sulla protezione dei dati (GDPR) dell'Unione Europea e dell'art. 13 del D.Lgs. 196/2003.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

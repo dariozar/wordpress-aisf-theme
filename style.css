@@ -67,6 +67,28 @@ html {
 	box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.35);
 }
 
+/* Logo navbar: edit --aisf-logo-width to change size site-wide. */
+.aisf-nav .aisf-nav-logo,
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child {
+	--aisf-logo-width: clamp(76px, 7.5vw, 104px);
+	width: var(--aisf-logo-width);
+	min-width: var(--aisf-logo-width);
+	flex: 0 0 var(--aisf-logo-width);
+	margin: 0;
+}
+.aisf-nav .aisf-nav-logo a,
+.aisf-nav .aisf-nav-logo img,
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child a,
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child img {
+	display: block;
+	width: 100% !important;
+	height: auto;
+}
+.aisf-nav .aisf-nav-logo img,
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child img {
+	max-width: none;
+}
+
 /* Footer link hover */
 .wp-block-template-part footer a:hover,
 footer.wp-block-template-part a:hover {
@@ -122,4 +144,1036 @@ body {
 		padding-top: var(--wp--preset--spacing--8) !important;
 		padding-bottom: var(--wp--preset--spacing--8) !important;
 	}
+}
+
+
+/* ==========================================================================
+   Documenti per anno (blocco aisf/documents-by-year)
+   ========================================================================== */
+.aisf-docs__year {
+	display: grid;
+	grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--7);
+	padding-block: var(--wp--preset--spacing--7);
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+}
+.aisf-docs__year:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+.aisf-docs__year-title {
+	position: sticky;
+	top: 112px;
+	align-self: start;
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(40px, 5vw, 64px);
+	font-weight: 600;
+	letter-spacing: -0.03em;
+	line-height: 1;
+}
+.aisf-docs__month {
+	margin: var(--wp--preset--spacing--6) 0 var(--wp--preset--spacing--3);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-docs__month:first-child {
+	margin-top: 0;
+}
+.aisf-docs__list {
+	display: grid;
+	gap: var(--wp--preset--spacing--3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.aisf-docs__empty {
+	color: var(--wp--preset--color--text-muted);
+}
+
+/* Riga documento (un solo link su tutta la riga) */
+.aisf-doc-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--4);
+	padding: var(--wp--preset--spacing--4);
+	background: var(--wp--preset--color--paper);
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: var(--wp--preset--border-radius--md);
+	color: inherit;
+	text-decoration: none;
+	transition: box-shadow 0.2s ease;
+}
+.aisf-doc-row__text {
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+}
+.aisf-doc-row__title {
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.35;
+}
+.aisf-doc-row__meta {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-doc-row__cta {
+	flex: none;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--tangerine);
+}
+a.aisf-doc-row:hover .aisf-doc-row__cta {
+	text-decoration: underline;
+}
+@media (max-width: 781px) {
+	.aisf-docs__year {
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--wp--preset--spacing--5);
+	}
+	.aisf-docs__year-title {
+		position: static;
+	}
+}
+
+/* ==========================================================================
+   Schede della stessa riga: stessa altezza, contenuto allineato
+   - aggiungi la classe "aisf-equal" al blocco Colonne
+   - aggiungi la classe "aisf-card-stack" alla scheda (Gruppo, layout flex verticale):
+     l'ultimo elemento (pulsante, nota) resta sempre in fondo
+   ========================================================================== */
+.wp-block-columns.aisf-equal {
+	align-items: stretch;
+}
+.wp-block-columns.aisf-equal > .wp-block-column {
+	display: flex;
+}
+.wp-block-columns.aisf-equal > .wp-block-column > .wp-block-group {
+	flex: 1 1 auto;
+	width: 100%;
+}
+.aisf-card-stack > :last-child {
+	margin-top: auto;
+}
+
+
+/* ==========================================================================
+   Pillola data (eventi)
+   ========================================================================== */
+.aisf-pill {
+	display: inline-flex;
+	align-self: flex-start;
+	padding: 5px 11px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Elenco eventi (blocco aisf/events-list)
+   ========================================================================== */
+.aisf-events--cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+	gap: var(--wp--preset--spacing--5);
+}
+.aisf-event-card {
+	display: flex;
+	flex-direction: column;
+	min-height: 240px;
+	overflow: hidden;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 22px;
+	background: var(--wp--preset--color--paper);
+	color: var(--wp--preset--color--ink);
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.aisf-event-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 18px 40px -22px rgba(14, 24, 48, 0.35);
+}
+.aisf-event-card__media {
+	position: relative;
+	display: block;
+	flex-shrink: 0;
+	height: 144px;
+	overflow: hidden;
+}
+.aisf-event-card__media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.aisf-event-card__media .aisf-pill {
+	position: absolute;
+	left: 16px;
+	bottom: 12px;
+}
+.aisf-event-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 16px;
+	padding: 28px;
+}
+.aisf-event-card__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.015em;
+	line-height: 1.1;
+}
+.aisf-event-card__foot {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	margin-top: auto;
+	padding-top: 16px;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+	color: var(--wp--preset--color--text-muted);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.aisf-events--compact {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+	gap: var(--wp--preset--spacing--4);
+}
+.aisf-event-row {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 16px;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 16px;
+	background: var(--wp--preset--color--paper);
+	color: var(--wp--preset--color--ink);
+	text-decoration: none;
+	transition: box-shadow 0.2s ease;
+}
+.aisf-event-row:hover {
+	box-shadow: 0 14px 32px -22px rgba(14, 24, 48, 0.35);
+}
+.aisf-event-row__thumb {
+	flex-shrink: 0;
+	width: 112px;
+	height: 76px;
+	border-radius: 10px;
+	object-fit: cover;
+}
+.aisf-event-row__text {
+	display: grid;
+	gap: 4px;
+	min-width: 0;
+}
+.aisf-event-row__meta {
+	overflow: hidden;
+	color: var(--wp--preset--color--text-muted);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+.aisf-event-row__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+.aisf-events__empty {
+	color: var(--wp--preset--color--text-muted);
+}
+
+/* Pagina del singolo evento: copertina e scheda del testo */
+.wp-block-cover.aisf-event-cover {
+	background-color: var(--wp--preset--color--ink);
+}
+.aisf-event-article {
+	box-shadow: 0 24px 60px -36px rgba(14, 24, 48, 0.3);
+}
+
+/* ==========================================================================
+   Membri dell'Esecutivo: flashcard espandibili
+   ========================================================================== */
+.aisf-exec__year + .aisf-exec__year {
+	margin-top: var(--wp--preset--spacing--9);
+}
+.aisf-exec__year-title {
+	margin: 0 0 var(--wp--preset--spacing--6);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(26px, 3.4vw, 36px);
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+.aisf-exec__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+	align-items: start;
+	gap: var(--wp--preset--spacing--5);
+}
+.aisf-exec__card {
+	min-width: 0;
+	overflow: hidden;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 20px;
+	background: var(--wp--preset--color--paper);
+	box-shadow: 0 5px 16px -14px rgba(14, 24, 48, 0.35);
+	transition: border-color .25s ease, box-shadow .3s ease, transform .3s cubic-bezier(.2, .75, .25, 1);
+}
+.aisf-exec__card:hover,
+.aisf-exec__card[open] {
+	border-color: color-mix(in srgb, var(--wp--preset--color--tangerine) 45%, var(--wp--preset--color--rule-light));
+	box-shadow: 0 18px 34px -24px rgba(14, 24, 48, .42);
+	transform: translateY(-2px);
+}
+.aisf-exec__summary {
+	display: grid;
+	grid-template-columns: 94px minmax(0, 1fr);
+	align-items: stretch;
+	gap: 0;
+	min-height: 126px;
+	cursor: pointer;
+	list-style: none;
+	outline: none;
+}
+.aisf-exec__summary::-webkit-details-marker { display: none; }
+.aisf-exec__summary::marker { content: ""; }
+.aisf-exec__summary:focus-visible {
+	outline: 3px solid var(--wp--preset--color--tangerine);
+	outline-offset: -4px;
+	border-radius: 18px;
+}
+.aisf-exec__photo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 126px;
+	overflow: hidden;
+	background: linear-gradient(145deg, var(--wp--preset--color--mint), var(--wp--preset--color--sky));
+}
+.aisf-exec__photo img {
+	width: 100%;
+	height: 100%;
+	min-height: 126px;
+	object-fit: cover;
+	transition: transform .5s cubic-bezier(.2, .75, .25, 1);
+}
+.aisf-exec__card:hover .aisf-exec__photo img,
+.aisf-exec__card[open] .aisf-exec__photo img {
+	transform: scale(1.045);
+}
+.aisf-exec__initial {
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 44px;
+	font-weight: 600;
+}
+.aisf-exec__info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 8px;
+	min-width: 0;
+	padding: 16px 17px;
+}
+.aisf-exec__role {
+	display: inline-block;
+	max-width: 100%;
+	padding: 4px 9px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--mint);
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 10px;
+	letter-spacing: 0.06em;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+.aisf-exec__name {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1.15;
+	overflow-wrap: anywhere;
+}
+.aisf-exec__toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 2px;
+	color: var(--wp--preset--color--text-muted);
+	font-size: 12px;
+	font-weight: 600;
+	transition: color .2s ease;
+}
+.aisf-exec__toggle span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 19px;
+	height: 19px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--paper-2);
+	font-size: 14px;
+	transition: transform .3s ease, background .3s ease;
+}
+.aisf-exec__card[open] .aisf-exec__toggle { color: var(--wp--preset--color--ink); }
+.aisf-exec__card[open] .aisf-exec__toggle span {
+	transform: rotate(45deg);
+	background: var(--wp--preset--color--tangerine);
+}
+.aisf-exec__panel {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows .38s cubic-bezier(.2, .75, .25, 1);
+}
+.aisf-exec__card[open] .aisf-exec__panel { grid-template-rows: 1fr; }
+.aisf-exec__panel-inner {
+	min-height: 0;
+	overflow: hidden;
+	border-top: 1px solid transparent;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition: opacity .28s ease, transform .32s ease, border-color .28s ease;
+}
+.aisf-exec__card[open] .aisf-exec__panel-inner {
+	border-top-color: var(--wp--preset--color--rule-light);
+	opacity: 1;
+	transform: translateY(0);
+}
+.aisf-exec__bio {
+	margin: 0;
+	padding: 16px 18px 19px;
+	color: var(--wp--preset--color--text-muted);
+	font-size: 14px;
+	line-height: 1.6;
+}
+.aisf-exec__empty {
+	color: var(--wp--preset--color--text-muted);
+	text-align: center;
+}
+@media (max-width: 480px) {
+	.aisf-nav .aisf-nav-logo,
+	.aisf-nav .aisf-nav-inner > .wp-block-image:first-child {
+		--aisf-logo-width: 70px;
+	}
+	.aisf-exec__summary { grid-template-columns: 82px minmax(0, 1fr); }
+	.aisf-exec__photo,
+	.aisf-exec__photo img { min-height: 118px; }
+	.aisf-exec__info { padding: 13px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.aisf-exec__card,
+	.aisf-exec__photo img,
+	.aisf-exec__toggle span,
+	.aisf-exec__panel,
+	.aisf-exec__panel-inner {
+		transition: none !important;
+	}
+	.aisf-exec__card:hover,
+	.aisf-exec__card[open] { transform: none; }
+}
+
+/* ==========================================================================
+   Documenti: card con descrizione espandibile (blocco aisf/documents-list)
+   ========================================================================== */
+.aisf-docs__year--flat {
+	display: block;
+	padding-top: 0;
+	border-top: 0;
+}
+.aisf-docs__list {
+	margin: 0;
+	padding: 0;
+}
+.aisf-doc-card {
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: var(--wp--preset--border-radius--md);
+	background: var(--wp--preset--color--paper);
+	transition: box-shadow 0.2s ease;
+}
+.aisf-doc-card[open],
+.aisf-doc-card:hover {
+	box-shadow: 0 14px 32px -24px rgba(14, 24, 48, 0.35);
+}
+.aisf-doc-card__summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--4);
+	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+	cursor: pointer;
+	list-style: none;
+}
+.aisf-doc-card__summary::-webkit-details-marker {
+	display: none;
+}
+.aisf-doc-card__summary:focus-visible {
+	outline: 2px solid var(--wp--preset--color--tangerine);
+	outline-offset: 2px;
+	border-radius: var(--wp--preset--border-radius--md);
+}
+.aisf-doc-card__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+.aisf-doc-card__chevron {
+	flex-shrink: 0;
+	width: 10px;
+	height: 10px;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	transform: rotate(45deg);
+	transition: transform 0.2s ease;
+}
+.aisf-doc-card[open] .aisf-doc-card__chevron {
+	transform: rotate(-135deg);
+}
+.aisf-doc-card__body {
+	display: grid;
+	gap: var(--wp--preset--spacing--3);
+	justify-items: start;
+	padding: 0 var(--wp--preset--spacing--5) var(--wp--preset--spacing--5);
+}
+.aisf-doc-card__category {
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper-2);
+	color: var(--wp--preset--color--text-muted);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.aisf-doc-card__text {
+	max-width: 70ch;
+	color: var(--wp--preset--color--text-muted);
+	font-size: 15px;
+	line-height: 1.6;
+}
+.aisf-doc-card__text > :first-child { margin-top: 0; }
+.aisf-doc-card__text > :last-child { margin-bottom: 0; }
+.aisf-doc-card__download {
+	display: inline-flex;
+	padding: 0.65em 1.2em;
+	border-radius: 999px;
+	background: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+}
+.aisf-doc-card__download:hover {
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+
+
+/* ==========================================================================
+   Comitati: mappa + elenco (blocco aisf/committees-map)
+   ========================================================================== */
+.aisf-committees__grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--8);
+}
+@media (min-width: 1000px) {
+	.aisf-committees__grid {
+		grid-template-columns: 420px minmax(0, 1fr);
+	}
+	.aisf-committees__mapcol {
+		position: sticky;
+		top: 96px;
+		align-self: start;
+	}
+}
+
+/* Mappa */
+.aisf-map {
+	width: 100%;
+	max-width: 520px;
+	margin-inline: auto;
+}
+.aisf-map__canvas {
+	position: relative;
+}
+.aisf-map__img {
+	display: block;
+	width: 100%;
+}
+.aisf-map__dot,
+.aisf-map__cluster {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	margin: 0;
+	cursor: pointer;
+	font: inherit;
+}
+.aisf-map__dot {
+	padding: 12px; /* area di tocco più ampia del pallino */
+	background: none;
+	border: 0;
+	line-height: 0;
+}
+span.aisf-map__dot {
+	cursor: default;
+}
+.aisf-map__dot-visual {
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 999px;
+	border: 2px solid var(--wp--preset--color--paper);
+	background: var(--wp--preset--color--tangerine);
+	box-shadow: 0 1px 3px rgba(14, 24, 48, 0.35);
+	transition: transform 0.15s ease;
+}
+.aisf-map__dot-visual.is-frozen {
+	background: var(--wp--preset--color--text-muted);
+}
+.aisf-map__dot:hover .aisf-map__dot-visual {
+	transform: scale(1.25);
+}
+.aisf-map [data-dot-active="true"] .aisf-map__dot-visual {
+	transform: scale(1.5);
+	outline: 2px solid var(--wp--preset--color--tangerine-deep);
+	outline-offset: 2px;
+}
+.aisf-map__cluster {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border-radius: 999px;
+	border: 2px solid var(--wp--preset--color--paper);
+	background: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	font-weight: 500;
+	box-shadow: 0 1px 3px rgba(14, 24, 48, 0.35);
+	transition: transform 0.15s ease, background 0.15s ease;
+}
+.aisf-map__cluster[data-cluster-active="true"] {
+	transform: translate(-50%, -50%) scale(1.15);
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+.aisf-map__caption {
+	margin-top: 8px;
+	min-height: 28px;
+	text-align: center;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-map__panel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	max-width: 420px;
+	margin: 4px auto 0;
+}
+.aisf-map__panel[hidden] {
+	display: none;
+}
+.aisf-map__goto {
+	cursor: pointer;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 6px 12px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+
+/* Ricerca e filtri */
+.aisf-committees__tools {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+@media (min-width: 800px) {
+	.aisf-committees__tools {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+.aisf-committees__search {
+	width: 100%;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 12px 20px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 15px;
+	color: var(--wp--preset--color--ink);
+	outline: none;
+}
+.aisf-committees__search::placeholder {
+	color: var(--wp--preset--color--text-dim);
+}
+.aisf-committees__search:focus {
+	border-color: var(--wp--preset--color--tangerine);
+}
+.aisf-committees__filters {
+	display: flex;
+	flex-shrink: 0;
+	gap: 8px;
+}
+.aisf-committees__filters button {
+	cursor: pointer;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 10px 16px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__filters button[aria-pressed="true"] {
+	background: var(--wp--preset--color--ink);
+	border-color: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+}
+.aisf-committees__count {
+	margin: 16px 0 0;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.is-hidden {
+	display: none !important;
+}
+
+/* Schede */
+.aisf-committees__list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 16px;
+}
+.aisf-lc {
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 16px;
+	background: var(--wp--preset--color--paper);
+	transition: box-shadow 0.2s ease;
+	scroll-margin-top: 110px;
+}
+.aisf-lc[open] {
+	box-shadow: var(--wp--preset--shadow--card);
+}
+.aisf-lc.map-card-active {
+	outline: 2px solid var(--wp--preset--color--tangerine);
+	outline-offset: 3px;
+}
+.aisf-lc__summary {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	cursor: pointer;
+	list-style: none;
+}
+.aisf-lc__summary::-webkit-details-marker {
+	display: none;
+}
+.aisf-lc__avatar {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 999px;
+	object-fit: cover;
+	object-position: center top;
+}
+.aisf-lc__avatar--initial {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 14px;
+	font-weight: 600;
+}
+.aisf-lc__heading {
+	flex: 1;
+	min-width: 0;
+}
+.aisf-lc__name,
+.aisf-lc__president {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.aisf-lc__name {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-lc__president {
+	font-size: 13px;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__badge {
+	flex-shrink: 0;
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 4px 10px;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 10px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__chevron {
+	flex-shrink: 0;
+	color: var(--wp--preset--color--text-muted);
+	transition: transform 0.2s ease;
+}
+.aisf-lc[open] .aisf-lc__chevron {
+	transform: rotate(180deg);
+}
+.aisf-lc__body {
+	padding: 0 16px 16px 68px;
+}
+.aisf-lc__meta {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__since {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.aisf-lc__links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 16px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+}
+.aisf-lc__links a,
+.aisf-lc__locate {
+	text-decoration: none;
+}
+.aisf-lc__mail,
+.aisf-lc__locate {
+	color: var(--wp--preset--color--tangerine-deep);
+}
+.aisf-lc__ext {
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__locate {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font: inherit;
+}
+
+/* Stato vuoto e nota sui comitati sospesi */
+.aisf-committees__empty {
+	margin-top: 16px;
+	border-radius: 16px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 32px;
+	text-align: center;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-committees__empty p {
+	margin: 0;
+}
+.aisf-committees__empty-title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__note {
+	margin-top: 32px;
+	border-radius: 22px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 24px;
+	font-size: 14px;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-committees__note strong {
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__note a {
+	color: var(--wp--preset--color--tangerine-deep);
+}
+@media (prefers-reduced-motion: reduce) {
+	.aisf-map__dot-visual,
+	.aisf-map__cluster,
+	.aisf-lc,
+	.aisf-lc__chevron {
+		transition: none;
+	}
+}
+
+
+/* ==========================================================================
+   Home: mappa con soli puntini + elenco comitati non cliccabile
+   ========================================================================== */
+.aisf-map--static {
+	max-width: none;
+}
+.aisf-map--static .aisf-map__dot {
+	padding: 0;
+	pointer-events: none; /* solo disegno: nessun clic */
+}
+.aisf-map--static .aisf-map__cluster {
+	pointer-events: none;
+	cursor: default;
+}
+.aisf-committees-names {
+	list-style: none;
+	margin: var(--wp--preset--spacing--6) 0 0;
+	padding: 0;
+	columns: 2;
+	column-gap: var(--wp--preset--spacing--6);
+}
+.aisf-committees-names li {
+	break-inside: avoid;
+	padding: 0;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees-names a {
+	display: block;
+	padding: var(--wp--preset--spacing--3) 0;
+	color: inherit;
+	text-decoration: none;
+	transition: color .2s ease, padding-left .2s ease;
+}
+.aisf-committees-names a:hover,
+.aisf-committees-names a:focus-visible {
+	padding-left: 5px;
+	color: var(--wp--preset--color--tangerine);
+}
+.aisf-committees-names li.is-frozen { color: var(--wp--preset--color--text-dim); }
+
+/* ==========================================================================
+   Pagina evento: riquadro "Informazioni" a destra
+   ========================================================================== */
+.aisf-event-side {
+	align-self: flex-start;
+}
+@media (min-width: 782px) {
+	.aisf-event-side {
+		position: sticky;
+		top: 96px;
+	}
+}
+.aisf-event-info {
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 22px;
+	background: var(--wp--preset--color--paper);
+	padding: var(--wp--preset--spacing--6);
+	box-shadow: 0 24px 60px -36px rgba(14, 24, 48, 0.3);
+}
+.aisf-event-info__title {
+	margin: 0 0 var(--wp--preset--spacing--4);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--tangerine-deep);
+}
+.aisf-event-info__list {
+	margin: 0;
+}
+.aisf-event-info__row {
+	padding: 12px 0;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+}
+.aisf-event-info__row dt {
+	margin: 0 0 2px;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-event-info__row dd {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-event-info__cta,
+.aisf-event-info__closed {
+	display: block;
+	margin: var(--wp--preset--spacing--4) 0 0;
+	border-radius: 999px;
+	padding: 12px 20px;
+	text-align: center;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+}
+.aisf-event-info__cta {
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+.aisf-event-info__closed {
+	background: var(--wp--preset--color--paper-2);
+	color: var(--wp--preset--color--text-muted);
 }

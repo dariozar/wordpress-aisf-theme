@@ -22,7 +22,7 @@ wp-content/themes/aisf/
 │   ├── index.html                    # Blog index
 │   ├── page.html                     # Generic page
 │   ├── page-no-title.html            # Page without hero
-│   ├── page-documenti.html           # Documents page
+│   ├── archive-aisf_document.html    # Documents archive (/documenti)
 │   ├── page-esecutivo.html           # Executive board page
 │   ├── archive.html                  # Default blog archive
 │   ├── archive-aisf_event.html       # Events archive
@@ -126,7 +126,8 @@ Font sizes: 7 fluid sizes from `x-small` (12px) to `xx-large` (80px). Headings: 
 | Event | `aisf_event` | `/eventi/` | title, editor, thumbnail, custom-fields | `_event_date`, `_event_location`, `_event_type`, `_event_status`, `_registration_deadline` |
 | Committee | `aisf_committee` | `/comitati/` | title, custom-fields | `_committee_president`, `_committee_established`, `_committee_email`, `_committee_status`, `_committee_region` |
 | Executive | `aisf_executive` | none | title, editor, thumbnail, custom-fields | `_executive_role`, `_executive_mandate`, `_executive_email` |
-| Document | `aisf_document` | none | title, custom-fields | `_document_type`, `_document_url`, `_document_date`, `_document_year` |
+| Document | `aisf_document` | `/documenti/` | title, custom-fields | `_document_type`, `_document_url`, `_document_date`, `_document_year` |
+| Project | `aisf_project` | `/progetti/` | title, editor, excerpt, thumbnail, custom-fields | `_project_category` |
 
 All meta fields registered via `register_post_meta()` with `show_in_rest: true` for block access.
 
@@ -160,8 +161,18 @@ All meta fields registered via `register_post_meta()` with `show_in_rest: true` 
 | `/eventi/` | `archive-aisf_event.html` | `aisf/template-events` |
 | `/eventi/*` (single) | `single-aisf_event.html` | `aisf/template-single-event` |
 | `/comitati/` | `archive-aisf_committee.html` | `aisf/template-committees` |
-| `/documenti` | `page-documenti.html` | `aisf/template-documents` |
+| `/documenti/` | `archive-aisf_document.html` | `aisf/template-documents` |
 | `/esecutivo` | `page-esecutivo.html` | `aisf/template-executive` |
+| `/progetti/` | `archive-aisf_project.html` | `aisf/template-projects` |
+| `/articoli/` | `page-articoli.html` | Query loop WordPress a blocchi |
+| `/iscriviti` (pagina con slug `iscriviti`) | `page-iscriviti.html` | `aisf/template-signup` |
+
+> **Pagine e permalink automatici.** `run_setup()` in `functions.php` crea le pagine `iscriviti` ed `esecutivo` (se mancano) e rigenera i permalink una sola volta per versione (`SETUP_VERSION`). Gli archivi `/eventi`, `/progetti`, `/documenti`, `/comitati` non richiedono pagine: sono generati dai post type. La pagina `/articoli/` usa invece `page-articoli.html` e un Query Loop a blocchi.
+
+> **Documenti per anno.** `/documenti/` usa il blocco dinamico `aisf/documents-by-year` (registrato in `functions.php`), inserito in `patterns/template-documents.php`. Raggruppa per anno e, di default, per mese. Per togliere la divisione per mese basta cambiare `{"groupByMonth":true}` in `{"groupByMonth":false}` nel pattern. Anno e mese si leggono da `_document_date` (formati `Y-m-d`, `d/m/Y`, `d-m-Y`, `d.m.Y`, `Y-m`); se manca, da `_document_year`; in ultimo dalla data di pubblicazione. Ogni riga è un link a `_document_url`.
+>
+> **Classi utility.** `aisf-equal` (sul blocco Colonne) e `aisf-card-stack` (sulle schede, Gruppo con layout flex verticale) rendono le schede di una riga uguali in altezza e tengono l'ultimo elemento in fondo. `aisf-measure` / `aisf-measure-left` limitano la larghezza dei paragrafi nelle CTA. Lo stile pulsante `is-style-on-dark` è pensato per sfondi scuri o immagini.
+
 | Blog posts | `archive.html` / `single.html` | `aisf/template-archive` / `aisf/template-single` |
 
 ---
@@ -207,3 +218,31 @@ Since the database starts empty, populate CPTs through one of:
 - **Past events section** — The events page has an "upcoming" section; a "past events" section with different card styles should be added when events archive has enough entries.
 - **Search** — Search template exists but no search form is placed in the header.
 - **`studio` CLI** — Not available in the current environment. When available, use `studio wp theme activate aisf` and `studio site start` to serve the site.
+
+
+## Pagine, eventi e documenti (aggiornamento)
+
+- **Pagine a blocchi.** `about`, `esecutivo` e `working-groups` non sono più HTML nel tema: `inc/pages.php` le crea la prima volta copiando `patterns/page-about.php`, `page-executive.php` e `page-working-groups.php` nel contenuto della pagina. Poi si modificano da Pagine → Modifica e il tema non le tocca più. I modelli `templates/page-*.html` contengono solo intestazione, contenuto della pagina e piè di pagina. Per rieseguire la configurazione aumenta `AISF_SETUP_VERSION` in `inc/pages.php`.
+- **Blocchi dinamici** (`inc/blocks.php`): `aisf/executive-members`, `aisf/events-list` (attributi `scope` upcoming/past/all, `layout` cards/compact, `limit`, `fallback`) e `aisf/documents-list` (`groupByYear`, `groupByMonth`).
+- **Eventi.** Per dividere "Prossimi" e "Passati" serve la data vera (campi "Data di inizio" e "Data di fine" nell'evento). Senza data vera si prova a leggere "APRILE 2026" dalla pillola; se non è leggibile l'evento va tra i passati.
+- **Documenti.** Il post type non ha pagina singola né archivio: sono card nella pagina `/documenti`. La descrizione è il testo del documento (o l'estratto).
+
+
+## Comitati: mappa + elenco (aggiornamento)
+
+- **Blocco `aisf/committees-map`** (`inc/committees.php`, JS in `assets/js/committees.js`, stili in `style.css`): mappa d'Italia con un punto per comitato, ricerca, filtri Tutti/Attivi/Sospesi ed elenco a schede apribili. È inserito in `patterns/template-committees.php` (archivio `/comitati/`) e si può usare anche in una pagina qualsiasi (sezione "Widget").
+- **Campi del comitato**: riquadro "Dati del comitato" (presidente, stato, attivo dal, latitudine/longitudine, email, social, regolamento, già presidenti). La foto è l'Immagine in evidenza.
+- **Cluster automatici**: i comitati a meno dell'1,5% di distanza sulla mappa (Roma, Milano) diventano un pallino numerato.
+- **Dati iniziali**: i 21 comitati di `aisf-astro` (`inc/committees-seed.json`, foto in `assets/images/presidenti/`) vengono creati una sola volta, solo se non esiste ancora nessun comitato.
+- `AISF_SETUP_VERSION` portata a 2: scarta l'eventuale modello `archive-aisf_committee` salvato nel database dall'Editor del sito, così si vede quello nuovo.
+
+## Navbar: triangolino del sottomenù
+
+Nel blocco CSS "Menu a tendina" di `functions.php`: colori del pannello in variabili (`--aisf-sub-bg`, `--aisf-sub-border`, …) che cambiano con gli stati `is-floating` / `over-dark` della navbar; il triangolino (`::before` del pannello) e la freccina accanto a "Chi siamo" usano le stesse variabili.
+
+## Aggiornamento: spazio navbar, evento, home
+
+- **Distacco navbar/contenuto** (L'Associazione, Esecutivo, Working Group): la regola "Sicurezza extra" in `functions.php` dava 140px al contenitore del contenuto invece che al primo blocco. Ora lo spazio lo dà solo l'hero scuro.
+- **Pagina evento**: blocco `aisf/event-info` (in `inc/blocks.php`) nel riquadro a destra, in `patterns/template-single-event.php`. Mostra solo i campi compilati. Nuovi campi nel riquadro dell'evento: "Scadenza iscrizioni" (`_event_registration_deadline`, mostrata solo se inserita) e "Link per iscriversi" (`_event_registration_url`).
+- **Home, sezione comitati**: blocchi `aisf/committees-dots` (cartina con i puntini, non cliccabile) e `aisf/committees-list` (nomi su due colonne, senza link), colonne allineate al centro in verticale. Modificato sia `front-page.php` sia `chapters-section.php`.
+- `AISF_SETUP_VERSION` = 3: ripristina anche il modello `front-page` salvato nel database.

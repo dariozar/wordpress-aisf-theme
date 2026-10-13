@@ -1,0 +1,11 @@
+AISF — modifiche tema (13 ottobre 2026)
+
+- Homepage: collegati i testi e le card di navigazione alle pagine /about/, /progetti/, /iscriviti/, /eventi/, /comitati/, /articoli/ e /documenti/. Rimossi i collegamenti vuoti e i salti ad ancore non presenti.
+- Comitati in homepage: i nomi puntano alla scheda corrispondente nella mappa interattiva di /comitati/#slug; i puntini della mappa statica in homepage restano decorativi.
+- Articoli: aggiunta la pagina a blocchi /articoli/ con query loop e paginazione; viene creata automaticamente dal setup del tema.
+- Navbar: logo più grande e responsive. Per modificarne la dimensione, regolare la variabile --aisf-logo-width in style.css (selettore .aisf-nav .aisf-nav-logo).
+- Comitato Esecutivo: card orizzontali cliccabili con apertura animata, accessibili da tastiera e con rispetto di prefers-reduced-motion.
+- Profili: aggiunto il campo “Presentazione del membro” alla scheda Esecutivo in WordPress. Le card usano questo campo, i campi descrittivi esistenti, l'estratto o il contenuto. Se non c'è una biografia salvata viene mostrato “Presentazione in aggiornamento.”; non sono stati inventati profili personali.
+- Setup incrementato alla versione 4 per applicare la homepage a blocchi aggiornata e creare /articoli/; il reset riguarda solo i template front-page e page-articoli.
+
+Dopo aver sostituito il tema sul sito, verificare /progetti/, /iscriviti/, /articoli/ e /comitati/. Se la descrizione di un membro è vuota, aprire WordPress → Esecutivo → membro e compilare “Presentazione del membro”.

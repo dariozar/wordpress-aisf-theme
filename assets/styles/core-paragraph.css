@@ -61,3 +61,21 @@
 	color: var(--wp--preset--color--paper) !important;
 	margin: 0 !important;
 }
+
+/* Larghezza di lettura: tiene il testo in un solo <p> ma lo spezza su più righe.
+   I margini inline vengono ignorati dentro i gruppi "constrained" (margin auto !important),
+   quindi la larghezza si limita con max-width. */
+.aisf-measure {
+	max-width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	text-wrap: balance;
+}
+
+/* Variante per testi allineati a sinistra dentro una scheda */
+.aisf-measure-left {
+	max-width: 560px;
+	margin-left: 0;
+	margin-right: auto;
+	text-wrap: pretty;
+}

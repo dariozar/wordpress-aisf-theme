@@ -51,3 +51,20 @@
 	border-color: var(--wp--preset--color--ink);
 	background: var(--wp--preset--color--paper-2);
 }
+
+/* Button — On dark / image (vetro chiaro, leggibile su sfondi scuri e su foto) */
+.wp-block-button.is-style-on-dark .wp-block-button__link {
+	background: rgba(247, 242, 236, 0.16);
+	color: var(--wp--preset--color--paper);
+	border: 1.5px solid rgba(247, 242, 236, 0.45);
+	border-radius: 999px;
+	backdrop-filter: blur(12px) saturate(140%);
+	-webkit-backdrop-filter: blur(12px) saturate(140%);
+	box-shadow: 0 6px 24px -10px rgba(14, 24, 48, 0.5);
+}
+.wp-block-button.is-style-on-dark .wp-block-button__link:hover,
+.wp-block-button.is-style-on-dark .wp-block-button__link:focus-visible {
+	background: rgba(247, 242, 236, 0.3);
+	border-color: rgba(247, 242, 236, 0.75);
+	color: var(--wp--preset--color--paper);
+}

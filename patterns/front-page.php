@@ -226,11 +226,7 @@
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|5","left":"var:preset|spacing|5"}}}} -->
 <div class="wp-block-columns"><!-- wp:column {"width":"55%"} -->
 <div class="wp-block-column" style="flex-basis:55%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"backgroundColor":"tangerine","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-tangerine-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"className":"is-style-tag-dark","style":{"typography":{"letterSpacing":"0.1em"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
-<p class="is-style-tag-dark" style="margin-bottom:var(--wp--preset--spacing--4);letter-spacing:0.1em">Open source · dal 2019</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"28px","fontWeight":"600"}}} -->
+<div class="wp-block-group has-tangerine-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"28px","fontWeight":"600"}}} -->
 <h3 class="wp-block-heading" style="font-size:28px;font-weight:600"><a href="/progetti/">Quaderno di Laboratorio Aperto</a></h3>
 <!-- /wp:heading -->
 
@@ -246,11 +242,7 @@
 
 <!-- wp:column {"width":"45%"} -->
 <div class="wp-block-column" style="flex-basis:45%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|7","bottom":"var:preset|spacing|7","left":"var:preset|spacing|7","right":"var:preset|spacing|7"},"blockGap":"var:preset|spacing|4"},"border":{"radius":"var:preset|border-radius|lg"}},"backgroundColor":"mint","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-mint-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:paragraph {"className":"is-style-tag-dark","style":{"typography":{"letterSpacing":"0.1em"},"spacing":{"margin":{"bottom":"var:preset|spacing|4"}}}} -->
-<p class="is-style-tag-dark" style="margin-bottom:var(--wp--preset--spacing--4);letter-spacing:0.1em">Divulgazione · dal 2021</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"28px","fontWeight":"600"}}} -->
+<div class="wp-block-group has-mint-background-color has-background" style="border-radius:var(--wp--preset--border-radius--lg);padding-top:var(--wp--preset--spacing--7);padding-right:var(--wp--preset--spacing--7);padding-bottom:var(--wp--preset--spacing--7);padding-left:var(--wp--preset--spacing--7)"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"28px","fontWeight":"600"}}} -->
 <h3 class="wp-block-heading" style="font-size:28px;font-weight:600"><a href="/progetti/">Programma per le Scuole</a></h3>
 <!-- /wp:heading -->
 

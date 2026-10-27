@@ -5,11 +5,11 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"metadata":{"patternName":"aisf/footer","name":"Footer","description":"Dark 4-column footer with network links.","categories":["aisf/footer"]},"align":"full","style":{"spacing":{"padding":{"top":"64px","bottom":"32px","right":"var:preset|spacing|4","left":"var:preset|spacing|4"},"margin":{"top":"var:preset|spacing|9","bottom":"0"}},"border":{"radius":{"topLeft":"var:preset|border-radius|xl","topRight":"var:preset|border-radius|xl"}}},"backgroundColor":"ink","textColor":"paper","layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"patternName":"aisf/footer","name":"footer","description":"Dark 4-column footer with network links.","categories":["aisf/footer"]},"align":"full","style":{"spacing":{"padding":{"top":"64px","bottom":"32px","right":"var:preset|spacing|4","left":"var:preset|spacing|4"},"margin":{"top":"var:preset|spacing|9","bottom":"0"}},"border":{"radius":{"topLeft":"var:preset|border-radius|xl","topRight":"var:preset|border-radius|xl"}}},"backgroundColor":"ink","textColor":"paper","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-paper-color has-ink-background-color has-text-color has-background" style="border-top-left-radius:var(--wp--preset--border-radius--xl);border-top-right-radius:var(--wp--preset--border-radius--xl);margin-top:var(--wp--preset--spacing--9);margin-bottom:0;padding-top:64px;padding-right:var(--wp--preset--spacing--4);padding-bottom:32px;padding-left:var(--wp--preset--spacing--4)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"48px","left":"48px"}}}} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"width":"37.5%"} -->
-<div class="wp-block-column" style="flex-basis:37.5%"><!-- wp:image {"width":"56px","sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/aisf-logo.png" alt="AISF" style="width:56px;height:auto"/></figure>
+<div class="wp-block-column" style="flex-basis:37.5%"><!-- wp:image {"width":"150px","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded","style":{"border":{"radius":{"topLeft":"0","topRight":"0","bottomLeft":"0","bottomRight":"0"}}}} -->
+<figure class="wp-block-image size-full is-resized has-custom-border is-style-rounded"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/aisf-logo.png" alt="AISF" style="border-top-left-radius:0;border-top-right-radius:0;border-bottom-left-radius:0;border-bottom-right-radius:0;width:150px;height:auto"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.55"}},"textColor":"text-on-dark-muted"} -->

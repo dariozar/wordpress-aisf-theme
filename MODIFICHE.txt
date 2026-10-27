@@ -1,0 +1,139 @@
+================================================================================
+AISF THEME — RIEPILOGO COMPLETO DELLE MODIFICHE RISPETTO AI COMMIT PRECEDENTI
+Data: Ottobre 2026
+================================================================================
+
+Questo documento riassume nel dettaglio tutte le modifiche apportate al tema AISF
+rispetto ai commit precedenti del repository.
+
+--------------------------------------------------------------------------------
+1. DIMENSIONI DEL LOGO NAVBAR MODIFICABILI A PIACIMENTO
+--------------------------------------------------------------------------------
+Problema precedente:
+- Le dimensioni del logo nella barra di navigazione erano bloccate tramite regole
+  CSS rigide in style.css (min-width: clamp, flex: 0 0 clamp, width: 100% !important).
+- Di conseguenza, qualsiasi tentativo di modificare le dimensioni del logo tramite
+  l'editor dei blocchi (Site Editor), tramite il Customizer o tramite inline style
+  veniva ignorato o sovrascritto.
+
+Modifiche apportate:
+1. Supporto nativo al logo personalizzato:
+   - Abilitato `add_theme_support('custom-logo')` in functions.php (sezione after_setup_theme).
+   - In patterns/header.php, il logo viene caricato dinamicamente: se l'amministratore
+     ha caricato un logo personalizzato in WordPress (Aspetto → Personalizza →
+     Denominazione del sito), viene usato quello; in alternativa viene usato il logo
+     predefinito (assets/images/aisf-logo.png).
+2. Controlli dedicati nel Customizer (Bacheca → Aspetto → Personalizza):
+   - Aggiunta la sezione "Dimensioni Logo Navbar" con tre impostazioni semplici:
+     a) "Larghezza Logo Desktop": es. 100px, 120px, 140px, 8vw (se vuoto, usa il default responsive).
+     b) "Larghezza Logo Mobile (< 480px)": es. 70px, 80px (se vuoto, usa 70px).
+     c) "Altezza Massima Logo (opzionale)": es. 50px, 60px per loghi con proporzioni verticali.
+   - Il CSS generato viene iniettato sia nel front-end tramite `wp_add_inline_style('aisf-style', ...)`
+     sia nell'area amministrativa (admin_head) per visualizzarlo anche nel Site Editor.
+3. Flessibilità in style.css:
+   - Spostata la variabile `--aisf-logo-width: clamp(76px, 7.5vw, 104px)` a livello di `:root`.
+   - Rimosso `min-width` fisso e cambiato `flex: 0 0 var(--aisf-logo-width)` in `flex: 0 0 auto`.
+   - Rimosso `!important` da `width: 100%` sull'elemento `img`.
+   - Aggiunto il supporto alla classe `.is-resized` di Gutenberg e al blocco `wp-block-site-logo`.
+   - Ora il logo può essere ridimensionato indifferentemente da:
+     * Customizer di WordPress
+     * Site Editor / Block Editor (trascinamento maniglie o impostazione pixel)
+     * Regole CSS aggiuntive / custom properties
+
+--------------------------------------------------------------------------------
+2. DISABILITAZIONE DI GUTENBERG PER ESECUTIVO E DOCUMENTI
+--------------------------------------------------------------------------------
+Problema precedente:
+- Per aggiungere o modificare un membro dell'Esecutivo o un documento, WordPress
+  apriva la schermata completa dell'editor a blocchi Gutenberg.
+- Questo risultava eccessivo, pesante e dispersivo per post type che necessitano
+  solo di pochi campi strutturati (es. ruolo, anno, foto, allegato PDF).
+
+Modifiche apportate:
+1. Rimozione del supporto 'editor' ed 'excerpt':
+   - In functions.php, la registrazione di `aisf_document` e `aisf_executive` non include
+     più `'editor'` né `'excerpt'` nell'array `supports`.
+   - Aggiunto un ciclo che rimuove esplicitamente i supporti (`remove_post_type_support`)
+     anche per eventuali registrazioni pregresse.
+2. Filtro nativo use_block_editor_for_post_type:
+   - Aggiunto il filtro `use_block_editor_for_post_type` che restituisce `false` per:
+     * `aisf_document`
+     * `aisf_documents`
+     * `aisf_executive` (e alias)
+   - Restituisce invece `true` per `aisf_event` (gli Eventi continuano a usare
+     Gutenberg normalmente).
+3. Nuova interfaccia classica per i Documenti:
+   - In functions.php, il meta box "Dettagli Documento" comprende ora:
+     * Categoria (es. Statuto, Verbale, Regolamento)
+     * Anno (per il raggruppamento automatico nella pagina /documenti)
+     * Descrizione (textarea per la spiegazione all'interno della card espandibile)
+     * Allegato PDF / DOCX con pulsante per la Media Library di WordPress
+   - In inc/blocks.php, la funzione `aisf_render_document_card()` legge prima di tutto
+     il meta campo `_aisf_document_description`, con fallback trasparente su
+     `post_content` e `post_excerpt` per i documenti già creati in passato.
+4. Interfaccia classica per i Membri dell'Esecutivo:
+   - Meta box con menu a tendina per gli 8 Ruoli ufficiali, Anno di Mandato e
+     textarea per la "Presentazione del membro" (con fallback su estratto/contenuto).
+   - Foto del membro gestita tramite il comodo box nativo "Immagine in evidenza" a lato.
+
+--------------------------------------------------------------------------------
+3. SPOSTAMENTO DI TUTTO IL CSS IN STYLE.CSS (PULIZIA DI FUNCTIONS.PHP)
+--------------------------------------------------------------------------------
+Problema precedente:
+- In functions.php erano presenti oltre 220 righe di CSS statico iniettate tramite
+  `add_action('wp_head', ...)` in un tag `<style id="aisf-custom-suite-css">`.
+- Questo appesantiva functions.php, impediva il caching del CSS da parte dei browser
+  e non permetteva al Site Editor di visualizzare quegli stili durante la modifica.
+
+Modifiche apportate:
+1. Rimosso interamente il blocco `wp_head` con CSS statico da functions.php.
+2. Spostati tutti gli stili in style.css, ordinati in sezioni commentate:
+   - Sticky footer e spaziatura navbar per le pagine interne (.wp-site-blocks)
+   - Layout ad altezza uniforme delle card nella pagina /iscriviti (stretch)
+   - Menu a tendina navbar: effetto glassmorphism, blur, colori dinamici, triangolino e freccia
+   - Griglia e card del Comitato Esecutivo (/esecutivo)
+   - Griglia e card dei Working Groups e sezioni About
+   - Griglia della galleria fotografica per gli eventi singoli
+3. Vantaggi:
+   - functions.php è ridotto di oltre 220 righe ed è dedicato esclusivamente alla logica PHP.
+   - Tutti gli stili beneficiano ora del caching del browser tramite style.css.
+   - Gli stili sono visibili anche nel Site Editor grazie ad `add_editor_style('style.css')`.
+
+--------------------------------------------------------------------------------
+4. RIEPILOGO DEI FILE MODIFICATI NEL TEMA
+--------------------------------------------------------------------------------
+
+1. functions.php:
+   - Aggiunto `add_theme_support('custom-logo')`.
+   - Rimossi supporti editor/excerpt da `aisf_document` e `aisf_executive`.
+   - Aggiunto filtro `use_block_editor_for_post_type` (disabilita Gutenberg per esecutivo e documenti).
+   - Esteso il meta box e il salvataggio dei Documenti (categoria, anno, descrizione, file).
+   - Aggiunto fallback per la bio dell'esecutivo nel meta box.
+   - Rimossi gli stili CSS inline dal blocco `wp_head`.
+   - Aggiunta la sezione Customizer "Dimensioni Logo Navbar" e la funzione `aisf_get_logo_dimensions_css()`.
+   - Collegato il CSS dinamico del logo a `style.css` tramite `wp_add_inline_style`.
+
+2. style.css:
+   - Riscritte le regole del logo navbar (.aisf-nav-logo) per renderlo ridimensionabile a piacimento.
+   - Supporto per `.is-resized` di Gutenberg e per `wp-block-site-logo`.
+   - Spostata la variabile responsive `--aisf-logo-width` su `:root`.
+   - Integrati tutti gli stili globali precedentemente presenti in functions.php (sticky footer,
+     dropdown glassmorphism, card /iscriviti, griglie esecutivo/working groups, galleria eventi).
+
+3. patterns/header.php:
+   - Rimosso il vincolo artificiale `flexSize: 400px`.
+   - Aggiunto il caricamento dinamico del logo: se caricato da Customizer usa quello,
+     altrimenti carica il file locale del tema.
+
+4. inc/blocks.php:
+   - In `aisf_render_document_card()`, aggiunto il controllo su `_aisf_document_description`
+     per visualizzare la descrizione inserita dal nuovo meta box classico.
+
+5. patterns/footer.php:
+   - Regolata la larghezza del logo nel footer a 150px con classe e stili coerenti.
+
+6. patterns/front-page.php:
+   - Rimossi tag ridondanti e pulizia collegamenti progetti.
+
+================================================================================
+

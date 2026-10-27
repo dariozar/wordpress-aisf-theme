@@ -369,8 +369,13 @@ function aisf_render_document_card( $post ) {
 	}
 	$category = trim( (string) get_post_meta( $post->ID, '_document_category', true ) );
 
-	$text = trim( (string) $post->post_content );
-	$desc = '' !== $text ? wp_kses_post( wpautop( do_blocks( $text ) ) ) : wp_kses_post( wpautop( (string) $post->post_excerpt ) );
+	$desc_meta = trim( (string) get_post_meta( $post->ID, '_aisf_document_description', true ) );
+	if ( '' !== $desc_meta ) {
+		$desc = wp_kses_post( wpautop( $desc_meta ) );
+	} else {
+		$text = trim( (string) $post->post_content );
+		$desc = '' !== $text ? wp_kses_post( wpautop( do_blocks( $text ) ) ) : wp_kses_post( wpautop( (string) $post->post_excerpt ) );
+	}
 
 	$ext = strtoupper( pathinfo( (string) wp_parse_url( $url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
 	$cta = in_array( $ext, array( 'PDF', 'DOC', 'DOCX' ), true ) ? 'Scarica ' . $ext : 'Apri documento';

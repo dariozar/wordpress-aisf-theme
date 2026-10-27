@@ -67,26 +67,44 @@ html {
 	box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.35);
 }
 
-/* Logo navbar: edit --aisf-logo-width to change size site-wide. */
-.aisf-nav .aisf-nav-logo,
-.aisf-nav .aisf-nav-inner > .wp-block-image:first-child {
+/* Logo navbar: dimensione predefinita responsive, modificabile a piacimento (Customizer, Site Editor, CSS) */
+:root {
 	--aisf-logo-width: clamp(76px, 7.5vw, 104px);
+}
+
+.aisf-nav .aisf-nav-logo,
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child,
+.aisf-nav .aisf-nav-inner > .wp-block-site-logo:first-child {
 	width: var(--aisf-logo-width);
-	min-width: var(--aisf-logo-width);
-	flex: 0 0 var(--aisf-logo-width);
+	max-width: 100%;
+	flex: 0 0 auto;
 	margin: 0;
 }
 .aisf-nav .aisf-nav-logo a,
-.aisf-nav .aisf-nav-logo img,
 .aisf-nav .aisf-nav-inner > .wp-block-image:first-child a,
-.aisf-nav .aisf-nav-inner > .wp-block-image:first-child img {
+.aisf-nav .aisf-nav-inner > .wp-block-site-logo:first-child a {
 	display: block;
-	width: 100% !important;
+	width: 100%;
 	height: auto;
 }
 .aisf-nav .aisf-nav-logo img,
-.aisf-nav .aisf-nav-inner > .wp-block-image:first-child img {
-	max-width: none;
+.aisf-nav .aisf-nav-inner > .wp-block-image:first-child img,
+.aisf-nav .aisf-nav-inner > .wp-block-site-logo:first-child img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	object-fit: contain;
+}
+/* Se l'utente ridimensiona l'immagine nell'editor di blocchi Gutenberg */
+.aisf-nav .aisf-nav-logo.is-resized,
+.aisf-nav .aisf-nav-inner > .wp-block-image.is-resized {
+	width: auto;
+}
+.aisf-nav .aisf-nav-logo.is-resized img,
+.aisf-nav .aisf-nav-inner > .wp-block-image.is-resized img {
+	width: auto;
+	max-width: 100%;
 }
 
 /* Footer link hover */
@@ -578,8 +596,12 @@ a.aisf-doc-row:hover .aisf-doc-row__cta {
 	text-align: center;
 }
 @media (max-width: 480px) {
+	:root {
+		--aisf-logo-width: 70px;
+	}
 	.aisf-nav .aisf-nav-logo,
-	.aisf-nav .aisf-nav-inner > .wp-block-image:first-child {
+	.aisf-nav .aisf-nav-inner > .wp-block-image:first-child,
+	.aisf-nav .aisf-nav-inner > .wp-block-site-logo:first-child {
 		--aisf-logo-width: 70px;
 	}
 	.aisf-exec__summary { grid-template-columns: 82px minmax(0, 1fr); }
@@ -1177,3 +1199,214 @@ span.aisf-map__dot {
 	background: var(--wp--preset--color--paper-2);
 	color: var(--wp--preset--color--text-muted);
 }
+
+/* ==========================================================================
+   GLOBAL SUITE STYLES (Moved from functions.php)
+   ========================================================================== */
+
+/* 1. Sticky Footer */
+body:not(.wp-admin) .wp-site-blocks {
+	min-height: 100vh !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+body:not(.wp-admin) .wp-site-blocks > main {
+	flex: 1 0 auto !important;
+	width: 100%;
+}
+body:not(.wp-admin) .wp-site-blocks > footer,
+body:not(.wp-admin) footer.wp-block-template-part {
+	margin-top: auto !important;
+	flex-shrink: 0 !important;
+}
+
+/* Sicurezza extra: se una pagina interna non inizia con l'Hero scuro (.has-ink-background-color), la stacca dalla navbar */
+body.page:not(.home):not(.wp-admin) .wp-site-blocks > main > :first-child:not(.has-ink-background-color):not(.wp-block-post-content) {
+	padding-top: 140px !important;
+}
+/* Pagine il cui contenuto sta in "Contenuto" (L'Associazione, Esecutivo, Working Groups…):
+   lo spazio sotto la navbar lo dà l'hero scuro dentro la pagina, non il contenitore */
+body.page:not(.home):not(.wp-admin) .wp-site-blocks > main > .wp-block-post-content {
+	padding-top: 0 !important;
+}
+body.page:not(.home):not(.wp-admin) .wp-site-blocks > main > .wp-block-post-content > :first-child:not(.has-ink-background-color):not(.wp-block-cover) {
+	padding-top: 140px !important;
+}
+
+/* 2. Card della stessa altezza SOLO nella pagina /iscriviti */
+body.aisf-is-signup .wp-block-columns {
+	align-items: stretch !important;
+}
+body.aisf-is-signup .wp-block-column {
+	display: flex !important;
+	flex-direction: column !important;
+}
+body.aisf-is-signup .wp-block-column > .wp-block-group {
+	height: 100% !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: stretch !important;
+	text-align: left !important;
+	box-sizing: border-box !important;
+}
+body.aisf-is-signup .wp-block-column > .wp-block-group > * {
+	width: 100% !important;
+	max-width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+body.aisf-is-signup .wp-block-column > .wp-block-group .wp-block-group.is-layout-flex {
+	display: flex !important;
+	flex-direction: row !important;
+	justify-content: space-between !important;
+	align-items: baseline !important;
+}
+
+/* 3. Menu a tendina (Dropdown): eredita il font e lo stile glass della navbar */
+.aisf-nav {
+	--aisf-sub-bg: rgba(255, 255, 255, 0.45);
+	--aisf-sub-border: rgba(15, 23, 42, 0.08);
+	--aisf-sub-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+	--aisf-sub-text: var(--wp--preset--color--text-muted, #5A6580);
+	--aisf-sub-text-hover: var(--wp--preset--color--ink, #0E1830);
+}
+.aisf-nav.is-floating {
+	--aisf-sub-bg: rgba(255, 255, 255, 0.72);
+	--aisf-sub-border: rgba(15, 23, 42, 0.1);
+	--aisf-sub-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+.aisf-nav.over-dark {
+	--aisf-sub-bg: rgba(15, 23, 42, 0.65);
+	--aisf-sub-border: rgba(255, 255, 255, 0.14);
+	--aisf-sub-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+	--aisf-sub-text: rgba(247, 242, 236, 0.9);
+	--aisf-sub-text-hover: var(--wp--preset--color--paper, #F7F2EC);
+}
+.aisf-nav .wp-block-navigation-submenu {
+	position: relative;
+	font-family: inherit !important;
+}
+.aisf-nav .wp-block-navigation__submenu-container {
+	font-family: inherit !important;
+	font-size: inherit !important;
+	letter-spacing: inherit !important;
+	background: var(--aisf-sub-bg) !important;
+	backdrop-filter: blur(20px) saturate(160%) !important;
+	-webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+	border: 1px solid var(--aisf-sub-border) !important;
+	border-radius: 16px !important;
+	padding: 8px !important;
+	min-width: 220px !important;
+	box-shadow: var(--aisf-sub-shadow) !important;
+	color: inherit !important;
+	overflow: visible !important;
+	transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important;
+}
+.aisf-nav.over-dark .wp-block-navigation__submenu-container {
+	color: #ffffff !important;
+}
+.aisf-nav .wp-block-navigation__submenu-container .wp-block-navigation-item,
+.aisf-nav .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	font-family: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	letter-spacing: inherit !important;
+	line-height: inherit !important;
+	padding: 10px 14px !important;
+	border-radius: 10px !important;
+	color: inherit !important;
+	transition: background 0.15s ease, opacity 0.15s ease !important;
+}
+.aisf-nav .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
+	background: rgba(15, 23, 42, 0.06) !important;
+}
+.aisf-nav.over-dark .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
+	background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 3b. Triangolino del sottomenù (solo menu desktop, solo primo livello) */
+.aisf-nav .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__container > .wp-block-navigation-submenu {
+	padding-bottom: 14px;
+	margin-bottom: -14px;
+}
+.aisf-nav .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__container > .wp-block-navigation-submenu > .wp-block-navigation__submenu-container::before {
+	content: "";
+	position: absolute;
+	top: -9px;
+	left: 32px;
+	width: 18px;
+	height: 10px;
+	background: var(--aisf-sub-bg);
+	clip-path: polygon(50% 0, 100% 9px, 100% 100%, 0 100%, 0 9px);
+	pointer-events: none;
+	transition: background 0.25s ease;
+}
+
+/* 3c. Freccina accanto ai sottomenu */
+.aisf-nav .wp-block-navigation__submenu-icon {
+	color: var(--aisf-sub-text);
+	transition: color 0.2s ease;
+}
+.aisf-nav .wp-block-navigation__submenu-icon svg {
+	stroke: currentColor;
+}
+.aisf-nav .wp-block-navigation-submenu:hover > .wp-block-navigation__submenu-icon,
+.aisf-nav .wp-block-navigation-submenu:focus-within > .wp-block-navigation__submenu-icon {
+	color: var(--aisf-sub-text-hover);
+}
+
+/* 4. Griglia Esecutivo (/esecutivo) */
+.aisf-exec-year-section { margin-bottom: 4.5rem; }
+.aisf-exec-year-heading { font-size: 1.75rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(15,23,42,0.08); color: #0f172a; font-family: inherit; }
+.aisf-exec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; align-items: stretch; }
+.aisf-exec-card { background: var(--wp--preset--color--paper, #faf8f5); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.08); display: flex; flex-direction: column; height: 100%; transition: transform 0.2s ease; }
+.aisf-exec-card:hover { transform: translateY(-4px); }
+.aisf-exec-photo-wrap { width: 100%; aspect-ratio: 1 / 1; background: #e2e8f0; overflow: hidden; }
+.aisf-exec-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.aisf-exec-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #6ee7b7, #93c5fd); color: #0f172a; font-size: 3rem; font-weight: 700; }
+.aisf-exec-info { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; text-align: center; }
+.aisf-exec-role-badge {
+	display: inline-block;
+	align-self: center;
+	font-family: var(--wp--preset--font-family--mono, monospace);
+	background: var(--wp--preset--color--tangerine, #f97316);
+	color: var(--wp--preset--color--ink, #0f172a);
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	padding: 4px 12px;
+	border-radius: 999px;
+	margin-bottom: 0.6rem;
+}
+.aisf-exec-name { font-size: 1.2rem; font-weight: 700; margin: 0; color: #0f172a; font-family: inherit; }
+
+/* 5. Griglia Working Groups e About Cards */
+.aisf-wg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 3.5rem; align-items: stretch; }
+.aisf-wg-card { background: var(--wp--preset--color--paper, #faf8f5); border-radius: 18px; padding: 2rem; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 4px 18px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: center; }
+.aisf-wg-tag {
+	display: inline-block;
+	align-self: flex-start;
+	font-family: var(--wp--preset--font-family--mono, monospace);
+	font-size: 0.72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	background: var(--wp--preset--color--tangerine, #f97316);
+	color: var(--wp--preset--color--ink, #0f172a);
+	padding: 4px 11px;
+	border-radius: 999px;
+	margin-bottom: 0.75rem;
+}
+.aisf-wg-card h3 { font-size: 1.35rem; margin: 0 0 0.75rem 0; color: #0f172a; font-family: inherit; }
+.aisf-wg-card p { font-size: 0.98rem; line-height: 1.6; color: #475569; margin: 0; font-family: inherit; }
+.aisf-wg-cta-box { background: var(--wp--preset--color--paper, #faf8f5); border-radius: 20px; padding: 2.5rem; border: 1px solid rgba(15,23,42,0.08); text-align: center; margin-bottom: 2rem; }
+.aisf-wg-cta-box h2 { margin-top: 0; color: #0f172a; font-family: inherit; }
+.aisf-wg-cta-box p { max-width: 650px; margin: 0 auto 1.5rem; color: #475569; font-family: inherit; }
+
+/* 6. Galleria Eventi */
+.aisf-event-gallery-wrap { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); }
+.aisf-event-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 1.5rem; }
+.aisf-event-gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; display: block; transition: transform 0.2s ease; }
+.aisf-event-gallery-grid a:hover img { transform: scale(1.02); }

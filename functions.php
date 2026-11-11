@@ -85,6 +85,19 @@ add_action( 'wp_enqueue_scripts', function() {
     }
 } );
 
+add_action( 'enqueue_block_editor_assets', function() {
+    $editor_js = get_template_directory() . '/assets/js/blocks-editor.js';
+    if ( file_exists( $editor_js ) ) {
+        wp_enqueue_script(
+            'aisf-blocks-editor-js',
+            get_template_directory_uri() . '/assets/js/blocks-editor.js',
+            array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-compose', 'wp-hooks' ),
+            filemtime( $editor_js ),
+            true
+        );
+    }
+} );
+
 /* ==========================================================================
    2. CATEGORIE PATTERN, CUSTOM POST TYPES, BLOCK BINDINGS E PAGINE AUTOMATICHE
    ========================================================================== */
@@ -98,6 +111,23 @@ function aisf_get_executive_roles() {
         'Concept Manager'     => 6,
         'Responsabili Membri' => 7,
         'Responsabili Eventi' => 8,
+    );
+}
+
+function aisf_get_document_categories() {
+    return array(
+        'Statuto e Atto Fondativo',
+        'Regolamenti',
+        'Piano Strategico',
+        'Verbali',
+    );
+}
+
+function aisf_get_default_document_subsections() {
+    return array(
+        'Videoconferenze del Comitato Esecutivo',
+        'Videoconferenze con i Comitati Locali',
+        'Assemblea Generale Annuale',
     );
 }
 
@@ -208,7 +238,7 @@ add_action( 'init', function() {
         'aisf_event'     => array( '_event_date', '_event_date_iso', '_event_end_date', '_event_type', '_event_location', '_event_registration_url', '_event_registration_deadline' ),
         'aisf_project'   => array( '_project_status', '_project_year', '_project_tag', '_project_url' ),
         'aisf_committee' => array( '_committee_city', '_committee_university', '_committee_email', '_committee_president', '_committee_region' ),
-        'aisf_document'  => array( '_document_category', '_document_year', '_document_file', '_aisf_document_file_url' ),
+        'aisf_document'  => array( '_document_category', '_document_subsection', '_document_year', '_document_file', '_aisf_document_file_url' ),
     );
 
     foreach ( $meta_bindings as $pt => $keys ) {
@@ -364,58 +394,109 @@ add_action( 'add_meta_boxes', function() {
         'high'
     );
 
-    // B) Meta Box Documenti: Upload PDF / DOCX + Categoria, Anno, Descrizione
+    // B) Meta Box Documenti: Upload PDF / DOCX + Sezione, Sottosezione, Anno, Breve descrizione accanto al titolo
     foreach ( array( 'aisf_document', 'aisf_documents' ) as $doc_pt ) {
         if ( post_type_exists( $doc_pt ) ) {
             add_meta_box(
                 'aisf_document_file_box',
-                'Dettagli Documento',
+                'Dettagli Documento (Pagina /documenti)',
                 function( $post ) {
                     wp_nonce_field( 'aisf_extra_meta_save', 'aisf_extra_meta_nonce' );
-                    $file_url = get_post_meta( $post->ID, '_aisf_document_file_url', true );
-                    $category = get_post_meta( $post->ID, '_document_category', true );
-                    $year     = get_post_meta( $post->ID, '_document_year', true );
-                    $desc     = get_post_meta( $post->ID, '_aisf_document_description', true );
+                    $file_url   = get_post_meta( $post->ID, '_aisf_document_file_url', true );
+                    $category   = get_post_meta( $post->ID, '_document_category', true );
+                    $subsection = get_post_meta( $post->ID, '_document_subsection', true );
+                    $year       = get_post_meta( $post->ID, '_document_year', true );
+                    $desc       = get_post_meta( $post->ID, '_aisf_document_description', true );
                     // Fallback: se la descrizione è vuota, prova il contenuto del post (migrazione)
                     if ( '' === $desc ) {
-                        $desc = trim( (string) $post->post_content );
+                        $desc = trim( wp_strip_all_tags( (string) $post->post_content ) );
                     }
                     if ( '' === $desc ) {
-                        $desc = trim( (string) $post->post_excerpt );
+                        $desc = trim( wp_strip_all_tags( (string) $post->post_excerpt ) );
                     }
+
+                    $categories  = function_exists( 'aisf_get_document_categories' ) ? aisf_get_document_categories() : array( 'Statuto e Atto Fondativo', 'Regolamenti', 'Piano Strategico', 'Verbali' );
+                    $subsections = function_exists( 'aisf_get_default_document_subsections' ) ? aisf_get_default_document_subsections() : array( 'Videoconferenze del Comitato Esecutivo', 'Videoconferenze con i Comitati Locali', 'Assemblea Generale Annuale' );
                     ?>
                     <table class="form-table">
                         <tr>
-                            <th><label for="_document_category">Categoria</label></th>
+                            <th><label for="_document_category">Sezione</label></th>
                             <td>
-                                <input type="text" id="_document_category" name="_document_category" value="<?php echo esc_attr( $category ); ?>" placeholder="es. Statuto, Verbale, Regolamento" class="regular-text" />
+                                <select id="_document_category" name="_document_category" style="min-width: 280px;">
+                                    <option value="">-- Seleziona una sezione --</option>
+                                    <?php foreach ( $categories as $cat_name ) : ?>
+                                        <option value="<?php echo esc_attr( $cat_name ); ?>" <?php selected( $category, $cat_name ); ?>>
+                                            <?php echo esc_html( $cat_name ); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                    <?php if ( '' !== $category && ! in_array( $category, $categories, true ) ) : ?>
+                                        <option value="<?php echo esc_attr( $category ); ?>" selected="selected">
+                                            <?php echo esc_html( $category ); ?>
+                                        </option>
+                                    <?php endif; ?>
+                                </select>
+                                <p class="description">Sezione della pagina <code>/documenti</code> in cui mostrare il documento (es. <em>Statuto e Atto Fondativo</em>, <em>Regolamenti</em>, <em>Piano Strategico</em>, <em>Verbali</em>).</p>
                             </td>
                         </tr>
                         <tr>
-                            <th><label for="_document_year">Anno</label></th>
+                            <th><label for="_document_subsection_select">Sottosezione (per Verbali)</label></th>
                             <td>
-                                <input type="number" id="_document_year" name="_document_year" value="<?php echo esc_attr( $year ); ?>" placeholder="es. 2026" min="1900" max="2100" style="width:100px;" />
-                                <p class="description">Usato per raggruppare i documenti per anno nella pagina /documenti.</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><label for="aisf_document_description">Descrizione</label></th>
-                            <td>
-                                <textarea id="aisf_document_description" name="aisf_document_description" rows="4" class="large-text" placeholder="Descrizione facoltativa del documento (compare nella card espandibile)."><?php echo esc_textarea( $desc ); ?></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><label for="aisf_document_file_url">Allegato (PDF / DOCX)</label></th>
-                            <td>
-                                <div style="display:flex; gap:10px; align-items:center;">
-                                    <input type="text" id="aisf_document_file_url" name="aisf_document_file_url" value="<?php echo esc_attr( $file_url ); ?>" style="width:100%; max-width:500px;" placeholder="https://.../documento.pdf" />
-                                    <button type="button" class="button button-primary" id="aisf_upload_doc_btn">Carica / Scegli File</button>
+                                <?php
+                                $is_custom_sub = ( '' !== $subsection && ! in_array( $subsection, $subsections, true ) );
+                                $select_val    = $is_custom_sub ? '__custom__' : $subsection;
+                                ?>
+                                <select id="_document_subsection_select" style="min-width: 320px;">
+                                    <option value="">-- Seleziona una sottosezione --</option>
+                                    <?php foreach ( $subsections as $sub_name ) : ?>
+                                        <option value="<?php echo esc_attr( $sub_name ); ?>" <?php selected( $select_val, $sub_name ); ?>>
+                                            <?php echo esc_html( $sub_name ); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                    <option value="__custom__" <?php selected( $select_val, '__custom__' ); ?>>-- Sottosezione personalizzata (scrivi sotto) --</option>
+                                </select>
+                                <div id="aisf_custom_sub_wrap" style="margin-top: 8px; <?php echo $is_custom_sub ? '' : 'display:none;'; ?>">
+                                    <input type="text" id="_document_subsection" name="_document_subsection" value="<?php echo esc_attr( $subsection ); ?>" placeholder="Scrivi il titolo della sottosezione personalizzata" class="regular-text" style="min-width: 320px;" />
                                 </div>
+                                <p class="description">Per i <strong>Verbali</strong>, scegli la sottosezione dal menù a tendina (oppure scegli "Sottosezione personalizzata" per crearne una con titolo a piacere).</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="_document_year">Anno Accademico</label></th>
+                            <td>
+                                <input type="text" id="_document_year" name="_document_year" value="<?php echo esc_attr( $year ); ?>" placeholder="es. 2025/2026" class="regular-text" style="width:160px;" />
+                                <p class="description">Es. <code>2025/2026</code>, <code>2024/2025</code>. Usato per suddividere i <strong>Verbali</strong> per anno accademico (se lasciato vuoto viene calcolato in automatico).</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="aisf_document_description">Piccola descrizione accanto al titolo (facoltativa)</label></th>
+                            <td>
+                                <input type="text" id="aisf_document_description" name="aisf_document_description" value="<?php echo esc_attr( $desc ); ?>" class="large-text" placeholder="Breve nota opzionale mostrata accanto al titolo (es. Approvato dall'AGA 2025)" />
+                                <p class="description">Lascia vuoto per mostrare solo il titolo e il pulsante cliccabile.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="aisf_document_file_url">Link Google Drive o File (PDF / DOCX)</label></th>
+                            <td>
+                                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                                    <input type="url" id="aisf_document_file_url" name="aisf_document_file_url" value="<?php echo esc_attr( $file_url ); ?>" style="width:100%; max-width:520px;" placeholder="https://drive.google.com/file/d/... oppure URL del file" />
+                                    <button type="button" class="button button-secondary" id="aisf_upload_doc_btn">Oppure carica File dalla Libreria</button>
+                                </div>
+                                <p class="description">Puoi incollare direttamente un <strong>link di Google Drive</strong> (impostando su Drive la sola visualizzazione / divieto di download: cliccando il pulsante l'utente verrà rimandato su Drive senza scaricare il file), oppure caricare un file PDF/DOCX.</p>
                             </td>
                         </tr>
                     </table>
                     <script>
                     jQuery(document).ready(function($){
+                        $('#_document_subsection_select').on('change', function(){
+                            var val = $(this).val();
+                            if (val === '__custom__') {
+                                $('#aisf_custom_sub_wrap').show();
+                                $('#_document_subsection').val('').trigger('focus');
+                            } else {
+                                $('#aisf_custom_sub_wrap').hide();
+                                $('#_document_subsection').val(val);
+                            }
+                        });
                         var docFrame;
                         $('#aisf_upload_doc_btn').on('click', function(e){
                             e.preventDefault();
@@ -608,6 +689,10 @@ add_action( 'save_post', function( $post_id ) {
 
     if ( isset( $_POST['_document_category'] ) ) {
         update_post_meta( $post_id, '_document_category', sanitize_text_field( wp_unslash( $_POST['_document_category'] ) ) );
+    }
+
+    if ( isset( $_POST['_document_subsection'] ) ) {
+        update_post_meta( $post_id, '_document_subsection', sanitize_text_field( wp_unslash( $_POST['_document_subsection'] ) ) );
     }
 
     if ( isset( $_POST['_document_year'] ) ) {

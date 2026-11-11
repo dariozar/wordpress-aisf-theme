@@ -50,12 +50,17 @@ add_action( 'init', function() {
 	register_block_type( 'aisf/documents-list', array(
 		'api_version'     => 3,
 		'title'           => 'Elenco documenti',
-		'description'     => 'Documenti come card con descrizione espandibile, divisi per anno.',
+		'description'     => 'Elenco di documenti con pulsante direttamente cliccabile, filtrabile per sezione, anno e sottosezioni.',
 		'category'        => 'widgets',
 		'icon'            => 'media-document',
 		'attributes'      => array(
-			'groupByYear'  => array( 'type' => 'boolean', 'default' => true ),
-			'groupByMonth' => array( 'type' => 'boolean', 'default' => false ),
+			'category'             => array( 'type' => 'string', 'default' => '' ),
+			'subsection'           => array( 'type' => 'string', 'default' => '' ),
+			'groupByYear'          => array( 'type' => 'boolean', 'default' => true ),
+			'groupByMonth'         => array( 'type' => 'boolean', 'default' => false ),
+			'groupBySubsection'    => array( 'type' => 'boolean', 'default' => false ),
+			'subsectionTitles'     => array( 'type' => 'string', 'default' => 'Videoconferenze del Comitato Esecutivo, Videoconferenze con i Comitati Locali, Assemblea Generale Annuale' ),
+			'showEmptySubsections' => array( 'type' => 'boolean', 'default' => true ),
 		),
 		'supports'        => $supports,
 		'render_callback' => 'aisf_render_documents_list',
@@ -307,10 +312,141 @@ function aisf_render_events_list( $attributes ) {
 /* ==========================================================================
    Documenti
    ========================================================================== */
+
+/**
+ * Normalizza il nome della sezione/categoria di un documento per associarlo
+ * alle 4 sezioni principali ("Statuto e Atto Fondativo", "Regolamenti",
+ * "Piano Strategico", "Verbali") o a eventuali sezioni personalizzate.
+ */
+function aisf_normalize_doc_category( $raw_cat, $post_title = '', $raw_sub = '' ) {
+	$cat   = trim( (string) $raw_cat );
+	$lower = function_exists( 'mb_strtolower' ) ? mb_strtolower( $cat ) : strtolower( $cat );
+
+	if ( '' === $lower && '' !== trim( (string) $raw_sub ) ) {
+		return 'Verbali';
+	}
+
+	$check = '' !== $lower ? $lower : ( function_exists( 'mb_strtolower' ) ? mb_strtolower( (string) $post_title ) : strtolower( (string) $post_title ) );
+
+	if ( false !== strpos( $check, 'statuto' ) || false !== strpos( $check, 'atto fondativo' ) || false !== strpos( $check, 'atto costitutivo' ) ) {
+		return 'Statuto e Atto Fondativo';
+	}
+	if ( false !== strpos( $check, 'regolament' ) ) {
+		return 'Regolamenti';
+	}
+	if ( false !== strpos( $check, 'piano strategico' ) || false !== strpos( $check, 'strategico' ) ) {
+		return 'Piano Strategico';
+	}
+	if ( false !== strpos( $check, 'verbal' ) || false !== strpos( $check, 'videoconferenz' ) || false !== strpos( $check, 'assemblea generale' ) || false !== strpos( $check, 'aga' ) ) {
+		return 'Verbali';
+	}
+
+	return '' !== $cat ? $cat : 'Statuto e Atto Fondativo';
+}
+
+/**
+ * Risolve la sottosezione di un documento (es. per i Verbali), mappando le 3 sottosezioni
+ * standard ai titoli personalizzabili impostati nel blocco, oppure mantenendo qualsiasi
+ * titolo di sottosezione personalizzato inserito nel documento.
+ */
+function aisf_resolve_doc_subsection( $raw_sub, $post_title, $configured_titles ) {
+	$sub_0 = isset( $configured_titles[0] ) && '' !== $configured_titles[0] ? $configured_titles[0] : 'Videoconferenze del Comitato Esecutivo';
+	$sub_1 = isset( $configured_titles[1] ) && '' !== $configured_titles[1] ? $configured_titles[1] : 'Videoconferenze con i Comitati Locali';
+	$sub_2 = isset( $configured_titles[2] ) && '' !== $configured_titles[2] ? $configured_titles[2] : 'Assemblea Generale Annuale';
+
+	$sub   = trim( (string) $raw_sub );
+	$lower = function_exists( 'mb_strtolower' ) ? mb_strtolower( $sub ) : strtolower( $sub );
+
+	if ( '' !== $sub ) {
+		// Se corrisponde esattamente a uno dei titoli configurati nel blocco, usa quello.
+		foreach ( $configured_titles as $ct ) {
+			$ct_lower = function_exists( 'mb_strtolower' ) ? mb_strtolower( $ct ) : strtolower( $ct );
+			if ( $lower === $ct_lower ) {
+				return $ct;
+			}
+		}
+		if ( false !== strpos( $lower, 'comitato esecutivo' ) || 'ce' === $lower || 'verbali ce' === $lower ) {
+			return $sub_0;
+		}
+		if ( false !== strpos( $lower, 'comitati locali' ) || 'lc' === $lower || 'verbali lc' === $lower ) {
+			return $sub_1;
+		}
+		if ( false !== strpos( $lower, 'assemblea generale' ) || 'aga' === $lower || 'verbali aga' === $lower ) {
+			return $sub_2;
+		}
+		// Sottosezione personalizzata inserita dall'utente: mantieni il titolo esatto.
+		return $sub;
+	}
+
+	// Inferenza dal titolo del documento se il campo sottosezione non è stato compilato
+	$title_lower = function_exists( 'mb_strtolower' ) ? mb_strtolower( (string) $post_title ) : strtolower( (string) $post_title );
+	if ( false !== strpos( $title_lower, 'comitati locali' ) || preg_match( '/\blc\b/u', $title_lower ) ) {
+		return $sub_1;
+	}
+	if ( false !== strpos( $title_lower, 'assemblea generale' ) || preg_match( '/\baga\b/u', $title_lower ) ) {
+		return $sub_2;
+	}
+	return $sub_0;
+}
+
+/**
+ * Restituisce l'anno accademico (es. "2025/2026") a partire dal campo _document_year
+ * oppure, se vuoto o indicato come singolo anno solare, lo calcola/normalizza nel formato AAAA/AAAA.
+ */
+function aisf_format_academic_year( $raw_year, $post_ts = 0 ) {
+	$val = trim( (string) $raw_year );
+
+	// Già nel formato "2025/2026" o "2025-2026"
+	if ( preg_match( '/^(\d{4})\s*[\/\-]\s*(\d{4})$/', $val, $m ) ) {
+		return $m[1] . '/' . $m[2];
+	}
+	// Formato abbreviato "2025/26" o "2025-26"
+	if ( preg_match( '/^(\d{4})\s*[\/\-]\s*(\d{2})$/', $val, $m ) ) {
+		$prefix = substr( $m[1], 0, 2 );
+		return $m[1] . '/' . $prefix . $m[2];
+	}
+	// Singolo anno a 4 cifre (es. "2025"): converte in anno accademico "2025/2026"
+	if ( preg_match( '/^(\d{4})$/', $val, $m ) ) {
+		$y = (int) $m[1];
+		if ( $y >= 1900 && $y <= 2100 ) {
+			return $y . '/' . ( $y + 1 );
+		}
+	}
+	// Qualsiasi altra stringa personalizzata non vuota inserita dall'utente
+	if ( '' !== $val ) {
+		return $val;
+	}
+
+	// Calcolo automatico dalla data del documento (da settembre inizia il nuovo A.A.)
+	$ts    = $post_ts > 0 ? $post_ts : time();
+	$year  = (int) gmdate( 'Y', $ts );
+	$month = (int) gmdate( 'n', $ts );
+	if ( $month >= 9 ) {
+		return $year . '/' . ( $year + 1 );
+	}
+	return ( $year - 1 ) . '/' . $year;
+}
+
 function aisf_render_documents_list( $attributes ) {
-	$by_year  = ! isset( $attributes['groupByYear'] ) || $attributes['groupByYear'];
-	$by_month = ! empty( $attributes['groupByMonth'] );
-	$utc      = new DateTimeZone( 'UTC' );
+	$filter_cat      = isset( $attributes['category'] ) ? trim( (string) $attributes['category'] ) : '';
+	$filter_sub      = isset( $attributes['subsection'] ) ? trim( (string) $attributes['subsection'] ) : '';
+	$by_year         = ! isset( $attributes['groupByYear'] ) || $attributes['groupByYear'];
+	$by_month        = ! empty( $attributes['groupByMonth'] );
+	$by_sub          = ! empty( $attributes['groupBySubsection'] );
+	$show_empty_subs = ! isset( $attributes['showEmptySubsections'] ) || ! empty( $attributes['showEmptySubsections'] );
+	$utc             = new DateTimeZone( 'UTC' );
+
+	$raw_sub_titles = isset( $attributes['subsectionTitles'] )
+		? (string) $attributes['subsectionTitles']
+		: 'Videoconferenze del Comitato Esecutivo, Videoconferenze con i Comitati Locali, Assemblea Generale Annuale';
+	$configured_subs = array_values( array_filter( array_map( 'trim', explode( ',', $raw_sub_titles ) ), 'strlen' ) );
+	if ( empty( $configured_subs ) ) {
+		$configured_subs = array(
+			'Videoconferenze del Comitato Esecutivo',
+			'Videoconferenze con i Comitati Locali',
+			'Assemblea Generale Annuale',
+		);
+	}
 
 	$posts = get_posts( array(
 		'post_type'      => 'aisf_document',
@@ -319,36 +455,150 @@ function aisf_render_documents_list( $attributes ) {
 		'no_found_rows'  => true,
 	) );
 
+	$target_cat = '' !== $filter_cat ? aisf_normalize_doc_category( $filter_cat ) : '';
+
+	$filtered = array();
+	foreach ( $posts as $post ) {
+		$raw_cat  = get_post_meta( $post->ID, '_document_category', true );
+		$raw_sub  = get_post_meta( $post->ID, '_document_subsection', true );
+		$norm_cat = aisf_normalize_doc_category( $raw_cat, get_the_title( $post ), $raw_sub );
+
+		if ( '' !== $target_cat ) {
+			$match_norm = ( function_exists( 'mb_strtolower' ) ? mb_strtolower( $norm_cat ) : strtolower( $norm_cat ) ) === ( function_exists( 'mb_strtolower' ) ? mb_strtolower( $target_cat ) : strtolower( $target_cat ) );
+			$match_raw  = ( function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( (string) $raw_cat ) ) : strtolower( trim( (string) $raw_cat ) ) ) === ( function_exists( 'mb_strtolower' ) ? mb_strtolower( $filter_cat ) : strtolower( $filter_cat ) );
+			if ( ! $match_norm && ! $match_raw ) {
+				continue;
+			}
+		}
+
+		$resolved_sub = aisf_resolve_doc_subsection( $raw_sub, get_the_title( $post ), $configured_subs );
+		if ( '' !== $filter_sub ) {
+			$sub_a = function_exists( 'mb_strtolower' ) ? mb_strtolower( $resolved_sub ) : strtolower( $resolved_sub );
+			$sub_b = function_exists( 'mb_strtolower' ) ? mb_strtolower( $filter_sub ) : strtolower( $filter_sub );
+			$sub_c = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( (string) $raw_sub ) ) : strtolower( trim( (string) $raw_sub ) );
+			if ( $sub_a !== $sub_b && $sub_c !== $sub_b ) {
+				continue;
+			}
+		}
+
+		$filtered[] = array(
+			'post'       => $post,
+			'subsection' => $resolved_sub,
+		);
+	}
+
 	$wrapper = get_block_wrapper_attributes( array( 'class' => 'aisf-docs' ) );
 
-	if ( ! $posts ) {
-		return '<div ' . $wrapper . '><p class="aisf-docs__empty">Nessun documento pubblicato.</p></div>';
+	// Se non ci sono ancora documenti in questa sezione:
+	// - Se sono attive le sottosezioni (es. Verbali) e showEmptySubsections è attivo, mostra comunque la struttura dell'anno accademico corrente e i menù a tendina delle sottosezioni.
+	if ( empty( $filtered ) ) {
+		if ( $by_sub && $show_empty_subs ) {
+			$cur_aa = aisf_format_academic_year( '', time() );
+			$html   = '<div ' . $wrapper . '>';
+			$html  .= '<section class="aisf-docs__year' . ( $by_year ? '' : ' aisf-docs__year--flat' ) . '">';
+			if ( $by_year ) {
+				$html .= '<h3 class="aisf-docs__year-title">' . esc_html( $cur_aa ) . '</h3>';
+			}
+			$html .= '<div class="aisf-docs__body">';
+			foreach ( $configured_subs as $sub_title ) {
+				$html .= '<details class="aisf-docs__subsection">';
+				$html .= '<summary class="aisf-docs__subsection-summary">';
+				$html .= '<span class="aisf-docs__subsection-title">' . esc_html( $sub_title ) . '</span>';
+				$html .= '<span class="aisf-docs__subsection-meta"><span class="aisf-docs__subsection-count">0</span><span class="aisf-docs__subsection-chevron" aria-hidden="true"></span></span>';
+				$html .= '</summary>';
+				$html .= '<div class="aisf-docs__subsection-body">';
+				$html .= '<p class="aisf-docs__empty">Nessun documento caricato in questa sottosezione.</p>';
+				$html .= '</div></details>';
+			}
+			$html .= '</div></section></div>';
+			return $html;
+		}
+		return '<div ' . $wrapper . '><p class="aisf-docs__empty">Nessun documento pubblicato in questa sezione.</p></div>';
 	}
 
-	// anno => mese (0 = non diviso per mese) => documenti
-	$tree = array();
-	foreach ( $posts as $post ) {
-		$ts    = strtotime( $post->post_date_gmt . ' UTC' );
-		$year  = (int) get_post_meta( $post->ID, '_document_year', true );
-		$year  = ( $year >= 1900 && $year <= 2100 ) ? $year : (int) gmdate( 'Y', $ts );
-		$year  = $by_year ? $year : 0;
-		$month = $by_month ? (int) gmdate( 'n', $ts ) : 0;
-		$tree[ $year ][ $month ][] = array( $ts, $post );
+	// Caso 1: Raggruppamento per Sottosezione a menù a tendina (es. Verbali divisi per Anno Accademico e Sottosezione)
+	if ( $by_sub ) {
+		$tree = array();
+		foreach ( $filtered as $entry ) {
+			$post     = $entry['post'];
+			$sub      = $entry['subsection'];
+			$ts       = strtotime( $post->post_date_gmt . ' UTC' );
+			$raw_year = get_post_meta( $post->ID, '_document_year', true );
+			$year_key = $by_year ? aisf_format_academic_year( $raw_year, $ts ) : '';
+			$tree[ $year_key ][ $sub ][] = array( $ts, $post );
+		}
+		krsort( $tree, SORT_NATURAL );
+
+		$html = '<div ' . $wrapper . '>';
+		foreach ( $tree as $year_label => $subs_map ) {
+			$html .= '<section class="aisf-docs__year' . ( $by_year ? '' : ' aisf-docs__year--flat' ) . '">';
+			if ( $by_year && '' !== (string) $year_label ) {
+				$html .= '<h3 class="aisf-docs__year-title">' . esc_html( (string) $year_label ) . '</h3>';
+			}
+			$html .= '<div class="aisf-docs__body">';
+
+			// Costruisci l'ordine delle sottosezioni: prima quelle configurate nel blocco, poi eventuali sottosezioni personalizzate aggiuntive
+			$ordered_sub_keys = $configured_subs;
+			foreach ( array_keys( $subs_map ) as $existing_sub ) {
+				if ( ! in_array( $existing_sub, $ordered_sub_keys, true ) ) {
+					$ordered_sub_keys[] = $existing_sub;
+				}
+			}
+
+			foreach ( $ordered_sub_keys as $sub_title ) {
+				$items = isset( $subs_map[ $sub_title ] ) ? $subs_map[ $sub_title ] : array();
+				if ( empty( $items ) && ! $show_empty_subs ) {
+					continue;
+				}
+				$count = count( $items );
+				$html .= '<details class="aisf-docs__subsection">';
+				$html .= '<summary class="aisf-docs__subsection-summary">';
+				$html .= '<span class="aisf-docs__subsection-title">' . esc_html( $sub_title ) . '</span>';
+				$html .= '<span class="aisf-docs__subsection-meta"><span class="aisf-docs__subsection-count">' . (int) $count . '</span><span class="aisf-docs__subsection-chevron" aria-hidden="true"></span></span>';
+				$html .= '</summary>';
+				$html .= '<div class="aisf-docs__subsection-body">';
+				if ( ! empty( $items ) ) {
+					usort( $items, function( $a, $b ) { return $b[0] <=> $a[0]; } );
+					$html .= '<div class="aisf-docs__list">';
+					foreach ( $items as $item ) {
+						$html .= aisf_render_document_card( $item[1] );
+					}
+					$html .= '</div>';
+				} else {
+					$html .= '<p class="aisf-docs__empty">Nessun documento caricato in questa sottosezione.</p>';
+				}
+				$html .= '</div></details>';
+			}
+
+			$html .= '</div></section>';
+		}
+		return $html . '</div>';
 	}
-	krsort( $tree );
+
+	// Caso 2: Elenco standard (piatto o diviso per anno accademico, es. Statuto, Regolamenti, Piano Strategico)
+	$tree = array();
+	foreach ( $filtered as $entry ) {
+		$post     = $entry['post'];
+		$ts       = strtotime( $post->post_date_gmt . ' UTC' );
+		$raw_year = get_post_meta( $post->ID, '_document_year', true );
+		$year_key = $by_year ? aisf_format_academic_year( $raw_year, $ts ) : '';
+		$month    = $by_month ? (int) gmdate( 'n', $ts ) : 0;
+		$tree[ $year_key ][ $month ][] = array( $ts, $post );
+	}
+	krsort( $tree, SORT_NATURAL );
 
 	$html = '<div ' . $wrapper . '>';
-	foreach ( $tree as $year => $months ) {
+	foreach ( $tree as $year_label => $months ) {
 		krsort( $months );
 		$html .= '<section class="aisf-docs__year' . ( $by_year ? '' : ' aisf-docs__year--flat' ) . '">';
-		if ( $by_year ) {
-			$html .= '<h2 class="aisf-docs__year-title">' . (int) $year . '</h2>';
+		if ( $by_year && '' !== (string) $year_label ) {
+			$html .= '<h3 class="aisf-docs__year-title">' . esc_html( (string) $year_label ) . '</h3>';
 		}
 		$html .= '<div class="aisf-docs__body">';
 		foreach ( $months as $month => $items ) {
 			usort( $items, function( $a, $b ) { return $b[0] <=> $a[0]; } );
 			if ( $by_month && $month > 0 ) {
-				$html .= '<h3 class="aisf-docs__month">' . esc_html( wp_date( 'F', gmmktime( 0, 0, 0, (int) $month, 1, (int) $year ?: 2000 ), $utc ) ) . '</h3>';
+				$html .= '<h4 class="aisf-docs__month">' . esc_html( wp_date( 'F', gmmktime( 0, 0, 0, (int) $month, 1, 2000 ), $utc ) ) . '</h4>';
 			}
 			$html .= '<div class="aisf-docs__list">';
 			foreach ( $items as $item ) {
@@ -361,38 +611,51 @@ function aisf_render_documents_list( $attributes ) {
 	return $html . '</div>';
 }
 
-/** Card documento: nella barra si vede solo il titolo; descrizione e download si aprono al clic. */
+/**
+ * Riga documento compatta: niente fisarmonica espandibile, titolo (con eventuale breve descrizione accanto)
+ * e pulsante di apertura/consultazione immediatamente cliccabile (supporta link Google Drive in sola lettura e file PDF/DOCX).
+ */
 function aisf_render_document_card( $post ) {
 	$url = trim( (string) get_post_meta( $post->ID, '_aisf_document_file_url', true ) );
 	if ( '' === $url ) {
 		$url = trim( (string) get_post_meta( $post->ID, '_document_file', true ) );
 	}
-	$category = trim( (string) get_post_meta( $post->ID, '_document_category', true ) );
+	if ( '' === $url ) {
+		$url = trim( (string) get_post_meta( $post->ID, 'file_url', true ) );
+	}
 
 	$desc_meta = trim( (string) get_post_meta( $post->ID, '_aisf_document_description', true ) );
-	if ( '' !== $desc_meta ) {
-		$desc = wp_kses_post( wpautop( $desc_meta ) );
+	if ( '' === $desc_meta ) {
+		$desc_meta = trim( (string) $post->post_excerpt );
+	}
+	if ( '' === $desc_meta ) {
+		$desc_meta = trim( (string) $post->post_content );
+	}
+	$short_desc = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $desc_meta ) ) );
+
+	$is_drive = ( false !== stripos( $url, 'drive.google.com' ) || false !== stripos( $url, 'docs.google.com' ) );
+	$ext      = strtoupper( pathinfo( (string) wp_parse_url( $url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
+	if ( $is_drive ) {
+		$cta = 'Apri su Drive';
+	} elseif ( in_array( $ext, array( 'PDF', 'DOC', 'DOCX' ), true ) ) {
+		$cta = 'Apri ' . $ext;
 	} else {
-		$text = trim( (string) $post->post_content );
-		$desc = '' !== $text ? wp_kses_post( wpautop( do_blocks( $text ) ) ) : wp_kses_post( wpautop( (string) $post->post_excerpt ) );
+		$cta = 'Apri documento';
 	}
 
-	$ext = strtoupper( pathinfo( (string) wp_parse_url( $url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
-	$cta = in_array( $ext, array( 'PDF', 'DOC', 'DOCX' ), true ) ? 'Scarica ' . $ext : 'Apri documento';
-
-	$html  = '<details class="aisf-doc-card">';
-	$html .= '<summary class="aisf-doc-card__summary"><span class="aisf-doc-card__title">' . esc_html( get_the_title( $post ) ) . '</span><span class="aisf-doc-card__chevron" aria-hidden="true"></span></summary>';
-	$html .= '<div class="aisf-doc-card__body">';
-	if ( '' !== $category ) {
-		$html .= '<span class="aisf-doc-card__category">' . esc_html( $category ) . '</span>';
+	$html  = '<div class="aisf-doc-row">';
+	$html .= '<div class="aisf-doc-row__main">';
+	$html .= '<span class="aisf-doc-row__title">' . esc_html( get_the_title( $post ) ) . '</span>';
+	if ( '' !== $short_desc ) {
+		$html .= '<span class="aisf-doc-row__desc">' . esc_html( $short_desc ) . '</span>';
 	}
-	if ( '' !== trim( wp_strip_all_tags( $desc ) ) ) {
-		$html .= '<div class="aisf-doc-card__text">' . $desc . '</div>';
-	}
+	$html .= '</div>';
 	if ( '' !== $url ) {
-		$html .= '<a class="aisf-doc-card__download" href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $cta ) . ' →</a>';
+		$html .= '<a class="aisf-doc-row__btn" href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( $cta ) . ' <span aria-hidden="true">→</span></a>';
+	} else {
+		$html .= '<span class="aisf-doc-row__btn aisf-doc-row__btn--disabled">File non disponibile</span>';
 	}
-	$html .= '</div></details>';
+	$html .= '</div>';
 	return $html;
 }
 

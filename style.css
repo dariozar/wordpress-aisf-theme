@@ -166,11 +166,11 @@ body {
 
 
 /* ==========================================================================
-   Documenti per anno (blocco aisf/documents-by-year)
+   Documenti per anno accademico (blocco aisf/documents-list)
    ========================================================================== */
 .aisf-docs__year {
 	display: grid;
-	grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+	grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
 	gap: var(--wp--preset--spacing--7);
 	padding-block: var(--wp--preset--spacing--7);
 	border-top: 1px solid var(--wp--preset--color--rule-light);
@@ -185,10 +185,10 @@ body {
 	align-self: start;
 	margin: 0;
 	font-family: var(--wp--preset--font-family--display);
-	font-size: clamp(40px, 5vw, 64px);
+	font-size: clamp(28px, 3.6vw, 44px);
 	font-weight: 600;
 	letter-spacing: -0.03em;
-	line-height: 1;
+	line-height: 1.05;
 }
 .aisf-docs__month {
 	margin: var(--wp--preset--spacing--6) 0 var(--wp--preset--spacing--3);
@@ -622,28 +622,40 @@ a.aisf-doc-row:hover .aisf-doc-row__cta {
 }
 
 /* ==========================================================================
-   Documenti: card con descrizione espandibile (blocco aisf/documents-list)
+   Documenti: sezioni, sottosezioni per anno e righe con pulsante cliccabile
    ========================================================================== */
+.aisf-doc-section + .aisf-doc-section {
+	padding-top: var(--wp--preset--spacing--8);
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+}
 .aisf-docs__year--flat {
 	display: block;
-	padding-top: 0;
+	padding-block: 0;
 	border-top: 0;
 }
 .aisf-docs__list {
+	display: grid;
+	gap: var(--wp--preset--spacing--3);
 	margin: 0;
 	padding: 0;
+	list-style: none;
 }
-.aisf-doc-card {
+.aisf-docs__subsection {
 	border: 1px solid var(--wp--preset--color--rule-light);
 	border-radius: var(--wp--preset--border-radius--md);
 	background: var(--wp--preset--color--paper);
-	transition: box-shadow 0.2s ease;
+	overflow: hidden;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.aisf-doc-card[open],
-.aisf-doc-card:hover {
-	box-shadow: 0 14px 32px -24px rgba(14, 24, 48, 0.35);
+.aisf-docs__subsection + .aisf-docs__subsection {
+	margin-top: var(--wp--preset--spacing--4);
 }
-.aisf-doc-card__summary {
+.aisf-docs__subsection:hover,
+.aisf-docs__subsection[open] {
+	border-color: color-mix(in srgb, var(--wp--preset--color--tangerine) 45%, var(--wp--preset--color--rule-light));
+	box-shadow: 0 14px 32px -24px rgba(14, 24, 48, 0.3);
+}
+.aisf-docs__subsection-summary {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -651,70 +663,151 @@ a.aisf-doc-row:hover .aisf-doc-row__cta {
 	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
 	cursor: pointer;
 	list-style: none;
+	user-select: none;
+	background: var(--wp--preset--color--paper);
+	transition: background-color 0.2s ease;
 }
-.aisf-doc-card__summary::-webkit-details-marker {
+.aisf-docs__subsection-summary::-webkit-details-marker {
 	display: none;
 }
-.aisf-doc-card__summary:focus-visible {
+.aisf-docs__subsection-summary::marker {
+	content: "";
+}
+.aisf-docs__subsection-summary:hover {
+	background: color-mix(in srgb, var(--wp--preset--color--paper-2) 55%, var(--wp--preset--color--paper));
+}
+.aisf-docs__subsection-summary:focus-visible {
 	outline: 2px solid var(--wp--preset--color--tangerine);
-	outline-offset: 2px;
-	border-radius: var(--wp--preset--border-radius--md);
+	outline-offset: -2px;
 }
-.aisf-doc-card__title {
+.aisf-docs__subsection-title {
+	margin: 0;
 	font-family: var(--wp--preset--font-family--display);
-	font-size: 18px;
+	font-size: clamp(17px, 2vw, 20px);
 	font-weight: 600;
+	letter-spacing: -0.015em;
 	line-height: 1.3;
+	color: var(--wp--preset--color--ink);
 }
-.aisf-doc-card__chevron {
+.aisf-docs__subsection-meta {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
 	flex-shrink: 0;
-	width: 10px;
-	height: 10px;
-	border-right: 2px solid currentColor;
-	border-bottom: 2px solid currentColor;
-	transform: rotate(45deg);
-	transition: transform 0.2s ease;
 }
-.aisf-doc-card[open] .aisf-doc-card__chevron {
-	transform: rotate(-135deg);
-}
-.aisf-doc-card__body {
-	display: grid;
-	gap: var(--wp--preset--spacing--3);
-	justify-items: start;
-	padding: 0 var(--wp--preset--spacing--5) var(--wp--preset--spacing--5);
-}
-.aisf-doc-card__category {
-	padding: 4px 10px;
+.aisf-docs__subsection-count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 24px;
+	height: 24px;
+	padding: 0 8px;
 	border-radius: 999px;
 	background: var(--wp--preset--color--paper-2);
 	color: var(--wp--preset--color--text-muted);
 	font-family: var(--wp--preset--font-family--mono);
 	font-size: 11px;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
+	font-weight: 600;
 }
-.aisf-doc-card__text {
-	max-width: 70ch;
+.aisf-docs__subsection[open] .aisf-docs__subsection-count {
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+.aisf-docs__subsection-chevron {
+	width: 9px;
+	height: 9px;
+	border-right: 2px solid var(--wp--preset--color--ink);
+	border-bottom: 2px solid var(--wp--preset--color--ink);
+	transform: rotate(45deg);
+	transition: transform 0.22s ease;
+}
+.aisf-docs__subsection[open] .aisf-docs__subsection-chevron {
+	transform: rotate(-135deg);
+}
+.aisf-docs__subsection-body {
+	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5) var(--wp--preset--spacing--5);
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+	background: color-mix(in srgb, var(--wp--preset--color--paper-2) 35%, var(--wp--preset--color--paper));
+}
+.aisf-doc-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--4);
+	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--5);
+	background: var(--wp--preset--color--paper);
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: var(--wp--preset--border-radius--md);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.aisf-doc-row:hover {
+	border-color: color-mix(in srgb, var(--wp--preset--color--tangerine) 45%, var(--wp--preset--color--rule-light));
+	box-shadow: 0 14px 32px -24px rgba(14, 24, 48, 0.32);
+}
+.aisf-doc-row__main {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 6px 12px;
+	min-width: 0;
+	flex: 1 1 auto;
+}
+.aisf-doc-row__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-doc-row__desc {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.4;
 	color: var(--wp--preset--color--text-muted);
-	font-size: 15px;
-	line-height: 1.6;
 }
-.aisf-doc-card__text > :first-child { margin-top: 0; }
-.aisf-doc-card__text > :last-child { margin-bottom: 0; }
-.aisf-doc-card__download {
+.aisf-doc-row__desc::before {
+	content: "— ";
+	color: var(--wp--preset--color--rule-light);
+}
+.aisf-doc-row__btn {
 	display: inline-flex;
-	padding: 0.65em 1.2em;
+	align-items: center;
+	gap: 6px;
+	flex-shrink: 0;
+	padding: 0.58em 1.15em;
 	border-radius: 999px;
 	background: var(--wp--preset--color--ink);
 	color: var(--wp--preset--color--paper);
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 600;
+	line-height: 1.2;
 	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
-.aisf-doc-card__download:hover {
+a.aisf-doc-row__btn:hover,
+a.aisf-doc-row__btn:focus-visible {
 	background: var(--wp--preset--color--tangerine);
 	color: var(--wp--preset--color--ink);
+	transform: translateY(-1px);
+}
+.aisf-doc-row__btn--disabled {
+	background: var(--wp--preset--color--paper-2);
+	color: var(--wp--preset--color--text-muted);
+	cursor: default;
+}
+@media (max-width: 640px) {
+	.aisf-doc-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--wp--preset--spacing--3);
+	}
+	.aisf-doc-row__desc::before {
+		content: "";
+	}
+	.aisf-doc-row__btn {
+		align-self: flex-start;
+	}
 }
 
 

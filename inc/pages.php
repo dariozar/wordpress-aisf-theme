@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AISF_SETUP_VERSION', '4' );
+define( 'AISF_SETUP_VERSION', '5' );
 
 /** Carica un'immagine del tema nella Libreria media (una volta) e ne restituisce l'ID. */
 function aisf_theme_image_attachment( $file ) {
@@ -105,7 +105,7 @@ function aisf_run_setup() {
 		'working-groups' => array( 'Working Groups', 'page-working-groups.php' ),
 		'iscriviti'      => array( 'Iscriviti', '' ),
 		'articoli'       => array( 'Articoli', '' ),
-		'documenti'      => array( 'Documenti', '' ),
+		'documenti'      => array( 'Documenti', 'page-documents.php' ),
 	);
 
 	foreach ( $pages as $slug => $page ) {
@@ -125,7 +125,7 @@ function aisf_run_setup() {
 
 	// Modelli salvati nel database dall'Editor del sito: hanno la precedenza sui file del tema,
 	// quindi si scartano per ripartire dai file aggiornati.
-	$reset = array( 'page-articoli', 'front-page' );
+	$reset = array( 'page-articoli', 'front-page', 'page-documenti' );
 	foreach ( $reset as $slug ) {
 		$overrides = get_posts( array(
 			'post_type'      => 'wp_template',

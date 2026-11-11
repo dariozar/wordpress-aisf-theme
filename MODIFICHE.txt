@@ -100,7 +100,39 @@ Modifiche apportate:
    - Gli stili sono visibili anche nel Site Editor grazie ad `add_editor_style('style.css')`.
 
 --------------------------------------------------------------------------------
-4. RIEPILOGO DEI FILE MODIFICATI NEL TEMA
+4. PAGINA DOCUMENTI (/documenti) IN BLOCCHI WORDPRESS CON SEZIONI E SOTTOSEZIONI
+--------------------------------------------------------------------------------
+Modifiche apportate secondo la struttura di https://ai-sf.it/documenti/:
+1. Struttura in Blocchi WordPress modificabili (patterns/page-documents.php,
+   patterns/template-documents.php, templates/page-documenti.html, inc/pages.php):
+   - La pagina /documenti è ora costruita interamente con blocchi WordPress (modificabile
+     da Pagine → Documenti → Modifica) e suddivisa nelle 4 sezioni ufficiali:
+     * "Statuto e Atto Fondativo"
+     * "Regolamenti"
+     * "Piano Strategico"
+     * "Verbali"
+   - I Verbali sono suddivisi per **Anno Accademico** (es. `2025/2026`, `2024/2025` in
+     ordine decrescente) e, all'interno di ciascun anno accademico, divisi nelle
+     sottosezioni visualizzate come **menù a tendina apribili**:
+     * "Videoconferenze del Comitato Esecutivo"
+     * "Videoconferenze con i Comitati Locali"
+     * "Assemblea Generale Annuale"
+2. Titoli delle sezioni e sottosezioni modificabili:
+   - I titoli delle sezioni principali sono blocchi Heading (H2) nativi di WordPress.
+   - I titoli delle sottosezioni a tendina sono liberamente modificabili sia dal pannello
+     laterale del blocco "Elenco documenti" nell'Editor a blocchi (assets/js/blocks-editor.js,
+     attributo `subsectionTitles`), sia scegliendo o scrivendo un titolo di sottosezione
+     personalizzato nella scheda del singolo documento (`_document_subsection`).
+3. Supporto nativo per link Google Drive (in sola visualizzazione, senza download) e
+   pulsante subito cliccabile (inc/blocks.php, functions.php, style.css):
+   - Rimossa la card espandibile a fisarmonica sul singolo documento e la descrizione lunga.
+   - Nel campo "Link Google Drive o File" puoi incollare direttamente il link di un
+     documento ospitato su Google Drive (dove puoi disattivare il download dalle impostazioni
+     di condivisione di Drive): cliccando il pulsante "Apri su Drive →" l'utente viene
+     rimandato direttamente alla visualizzazione su Drive senza scaricare il file.
+
+--------------------------------------------------------------------------------
+5. RIEPILOGO DEI FILE MODIFICATI NEL TEMA
 --------------------------------------------------------------------------------
 
 1. functions.php:

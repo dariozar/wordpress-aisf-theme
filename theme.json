@@ -521,6 +521,9 @@
 			"link": {
 				"color": {
 					"text": "var(--wp--preset--color--ink)"
+				},
+				"typography": {
+					"textDecoration": "none"
 				}
 			}
 		},

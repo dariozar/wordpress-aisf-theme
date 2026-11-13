@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Mappa d'Italia comitati (condivisa da aisf/committees-map e aisf/committees-dots)
+   ========================================================================== */
+.aisf-map {
+	width: 100%;
+	max-width: 520px;
+	margin-inline: auto;
+}
+.aisf-map__canvas {
+	position: relative;
+}
+.aisf-map__img {
+	display: block;
+	width: 100%;
+}
+.aisf-map__dot,
+.aisf-map__cluster {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	margin: 0;
+	cursor: pointer;
+	font: inherit;
+}
+.aisf-map__dot {
+	padding: 12px;
+	background: none;
+	border: 0;
+	line-height: 0;
+}
+span.aisf-map__dot {
+	cursor: default;
+}
+.aisf-map__dot-visual {
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 999px;
+	border: 2px solid var(--wp--preset--color--paper);
+	background: var(--wp--preset--color--tangerine);
+	box-shadow: 0 1px 3px rgba(14, 24, 48, 0.35);
+	transition: transform 0.15s ease;
+}
+.aisf-map__dot-visual.is-frozen {
+	background: var(--wp--preset--color--text-muted);
+}
+.aisf-map__dot:hover .aisf-map__dot-visual {
+	transform: scale(1.25);
+}
+.aisf-map [data-dot-active="true"] .aisf-map__dot-visual {
+	transform: scale(1.5);
+	outline: 2px solid var(--wp--preset--color--tangerine-deep);
+	outline-offset: 2px;
+}
+.aisf-map__cluster {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border-radius: 999px;
+	border: 2px solid var(--wp--preset--color--paper);
+	background: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	font-weight: 500;
+	box-shadow: 0 1px 3px rgba(14, 24, 48, 0.35);
+	transition: transform 0.15s ease, background 0.15s ease;
+}
+.aisf-map__cluster[data-cluster-active="true"] {
+	transform: translate(-50%, -50%) scale(1.15);
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+.aisf-map__caption {
+	margin-top: 8px;
+	min-height: 28px;
+	text-align: center;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-map__panel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	max-width: 420px;
+	margin: 4px auto 0;
+}
+.aisf-map__panel[hidden] {
+	display: none;
+}
+.aisf-map__goto {
+	cursor: pointer;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 6px 12px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-map--static {
+	max-width: none;
+}
+.aisf-map--static .aisf-map__dot {
+	padding: 0;
+	pointer-events: none;
+}
+.aisf-map--static .aisf-map__cluster {
+	pointer-events: none;
+	cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+	.aisf-map__dot-visual,
+	.aisf-map__cluster {
+		transition: none;
+	}
+}

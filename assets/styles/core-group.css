@@ -56,3 +56,19 @@
 	border-radius: var(--wp--preset--border-radius--lg) !important;
 	padding: var(--wp--preset--spacing--7) !important;
 }
+
+.is-style-paper p,
+.is-style-dark p,
+.aisf-card p {
+	color: var(--wp--preset--color--text-muted);
+}
+
+/* L'ultimo elemento (pulsante, nota) in una scheda flex resta sempre in fondo */
+.aisf-card-stack > :last-child {
+	margin-top: auto;
+}
+
+/* Scheda articolo nella pagina del singolo evento */
+.aisf-event-article {
+	box-shadow: 0 24px 60px -36px rgba(14, 24, 48, 0.3);
+}

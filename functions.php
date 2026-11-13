@@ -27,15 +27,16 @@ add_action( 'after_setup_theme', function() {
         'flex-width'  => true,
     ) );
 
-    $block_styles = array(
+    $core_block_styles = array(
         'core/navigation' => 'core-navigation.css',
         'core/button'     => 'core-button.css',
         'core/cover'      => 'core-cover.css',
         'core/paragraph'  => 'core-paragraph.css',
         'core/group'      => 'core-group.css',
+        'core/columns'    => 'core-columns.css',
     );
 
-    foreach ( $block_styles as $block_name => $file_name ) {
+    foreach ( $core_block_styles as $block_name => $file_name ) {
         $rel_path  = 'assets/styles/' . $file_name;
         $full_path = get_template_directory() . '/' . $rel_path;
         if ( file_exists( $full_path ) ) {
@@ -43,10 +44,38 @@ add_action( 'after_setup_theme', function() {
                 'handle' => 'aisf-' . sanitize_title( $block_name ),
                 'src'    => get_template_directory_uri() . '/' . $rel_path,
                 'path'   => $full_path,
+                'ver'    => filemtime( $full_path ),
             ) );
         }
     }
 } );
+
+// CSS specifici per i blocchi dinamici AISF: caricati SOLO sulle pagine in cui il blocco è presente
+add_action( 'init', function() {
+    $custom_block_styles = array(
+        array( 'block' => 'aisf/documents-list',   'handle' => 'aisf-documents-list',  'file' => 'aisf-documents-list.css' ),
+        array( 'block' => 'aisf/executive-members','handle' => 'aisf-executive-members','file' => 'aisf-executive-members.css' ),
+        array( 'block' => 'aisf/events-list',      'handle' => 'aisf-events-list',     'file' => 'aisf-events-list.css' ),
+        array( 'block' => 'aisf/event-info',       'handle' => 'aisf-event-info',      'file' => 'aisf-event-info.css' ),
+        array( 'block' => 'aisf/committees-map',   'handle' => 'aisf-map',             'file' => 'aisf-map.css' ),
+        array( 'block' => 'aisf/committees-map',   'handle' => 'aisf-committees-map',  'file' => 'aisf-committees-map.css' ),
+        array( 'block' => 'aisf/committees-dots',  'handle' => 'aisf-map',             'file' => 'aisf-map.css' ),
+        array( 'block' => 'aisf/committees-list',  'handle' => 'aisf-committees-list', 'file' => 'aisf-committees-list.css' ),
+    );
+
+    foreach ( $custom_block_styles as $entry ) {
+        $rel_path  = 'assets/styles/' . $entry['file'];
+        $full_path = get_template_directory() . '/' . $rel_path;
+        if ( file_exists( $full_path ) ) {
+            wp_enqueue_block_style( $entry['block'], array(
+                'handle' => $entry['handle'],
+                'src'    => get_template_directory_uri() . '/' . $rel_path,
+                'path'   => $full_path,
+                'ver'    => filemtime( $full_path ),
+            ) );
+        }
+    }
+}, 20 );
 
 add_action( 'wp_enqueue_scripts', function() {
     // 1. Carica i Google Fonts usati dal tema AISF

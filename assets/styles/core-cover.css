@@ -3,3 +3,8 @@
 	border-bottom-left-radius: var(--wp--preset--border-radius--xl) !important;
 	border-bottom-right-radius: var(--wp--preset--border-radius--xl) !important;
 }
+
+/* Pagina del singolo evento: sfondo copertina */
+.wp-block-cover.aisf-event-cover {
+	background-color: var(--wp--preset--color--ink);
+}

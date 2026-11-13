@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Blocco aisf/event-info: riquadro "Informazioni" e galleria singolo evento
+   ========================================================================== */
+.aisf-event-side {
+	align-self: flex-start;
+}
+@media (min-width: 782px) {
+	.aisf-event-side {
+		position: sticky;
+		top: 96px;
+	}
+}
+.aisf-event-info {
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 22px;
+	background: var(--wp--preset--color--paper);
+	padding: var(--wp--preset--spacing--6);
+	box-shadow: 0 24px 60px -36px rgba(14, 24, 48, 0.3);
+}
+.aisf-event-info__title {
+	margin: 0 0 var(--wp--preset--spacing--4);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--tangerine-deep);
+}
+.aisf-event-info__list {
+	margin: 0;
+}
+.aisf-event-info__row {
+	padding: 12px 0;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+}
+.aisf-event-info__row dt {
+	margin: 0 0 2px;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-event-info__row dd {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-event-info__cta,
+.aisf-event-info__closed {
+	display: block;
+	margin: var(--wp--preset--spacing--4) 0 0;
+	border-radius: 999px;
+	padding: 12px 20px;
+	text-align: center;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+}
+.aisf-event-info__cta {
+	background: var(--wp--preset--color--tangerine);
+	color: var(--wp--preset--color--ink);
+}
+.aisf-event-info__closed {
+	background: var(--wp--preset--color--paper-2);
+	color: var(--wp--preset--color--text-muted);
+}
+
+/* Galleria fotografica evento */
+.aisf-event-gallery-wrap { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+.aisf-event-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 1.5rem; }
+.aisf-event-gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; display: block; transition: transform 0.2s ease; }
+.aisf-event-gallery-grid a:hover img { transform: scale(1.02); }

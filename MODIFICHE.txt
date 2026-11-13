@@ -132,7 +132,33 @@ Modifiche apportate secondo la struttura di https://ai-sf.it/documenti/:
      rimandato direttamente alla visualizzazione su Drive senza scaricare il file.
 
 --------------------------------------------------------------------------------
-5. RIEPILOGO DEI FILE MODIFICATI NEL TEMA
+5. OTTIMIZZAZIONE CSS PER BLOCCHI E THEME.JSON (RIDUZIONE DI STYLE.CSS)
+--------------------------------------------------------------------------------
+Per massimizzare l'efficienza del caricamento sulle singole pagine:
+1. Ridotto style.css da ~1.505 righe a ~183 righe:
+   - Mantenuti in style.css solo gli stili strettamente globali (reset base, sfondo
+     aurora, sticky footer, shell navbar + dimensioni logo, hover footer e card).
+   - Rimossi oltre 60 selettori legacy non più utilizzati nel tema.
+2. Delegato a theme.json:
+   - Impostazione globale `textDecoration: "none"` sui link in `styles.elements.link`.
+3. CSS modulare per singolo blocco in assets/styles/ (wp_enqueue_block_style):
+   - Ogni blocco carica il proprio foglio di stile SOLO sulle pagine in cui è presente
+     (con `path` + `ver` basato su `filemtime` per inlining automatico e cache busting):
+     * core/navigation      → assets/styles/core-navigation.css (inclusi dropdown)
+     * core/group           → assets/styles/core-group.css (inclusi card-stack, event-article)
+     * core/cover           → assets/styles/core-cover.css (incluso event-cover)
+     * core/paragraph       → assets/styles/core-paragraph.css (incluso .aisf-pill)
+     * core/columns         → assets/styles/core-columns.css (colonne /iscriviti e .aisf-equal)
+     * aisf/documents-list  → assets/styles/aisf-documents-list.css
+     * aisf/executive-members → assets/styles/aisf-executive-members.css
+     * aisf/events-list     → assets/styles/aisf-events-list.css
+     * aisf/event-info      → assets/styles/aisf-event-info.css (+ galleria evento)
+     * aisf/committees-map  → assets/styles/aisf-map.css + assets/styles/aisf-committees-map.css
+     * aisf/committees-dots → assets/styles/aisf-map.css
+     * aisf/committees-list → assets/styles/aisf-committees-list.css
+
+--------------------------------------------------------------------------------
+6. RIEPILOGO DEI FILE MODIFICATI NEL TEMA
 --------------------------------------------------------------------------------
 
 1. functions.php:

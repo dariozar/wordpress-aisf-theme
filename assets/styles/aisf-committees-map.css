@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Blocco aisf/committees-map: griglia, ricerca, filtri e schede comitati
+   ========================================================================== */
+.aisf-committees__grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--8);
+}
+@media (min-width: 1000px) {
+	.aisf-committees__grid {
+		grid-template-columns: 420px minmax(0, 1fr);
+	}
+	.aisf-committees__mapcol {
+		position: sticky;
+		top: 96px;
+		align-self: start;
+	}
+}
+.aisf-committees__tools {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+@media (min-width: 800px) {
+	.aisf-committees__tools {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+.aisf-committees__search {
+	width: 100%;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 12px 20px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 15px;
+	color: var(--wp--preset--color--ink);
+	outline: none;
+}
+.aisf-committees__search::placeholder {
+	color: var(--wp--preset--color--text-dim);
+}
+.aisf-committees__search:focus {
+	border-color: var(--wp--preset--color--tangerine);
+}
+.aisf-committees__filters {
+	display: flex;
+	flex-shrink: 0;
+	gap: 8px;
+}
+.aisf-committees__filters button {
+	cursor: pointer;
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	padding: 10px 16px;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__filters button[aria-pressed="true"] {
+	background: var(--wp--preset--color--ink);
+	border-color: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+}
+.aisf-committees__count {
+	margin: 16px 0 0;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.is-hidden {
+	display: none !important;
+}
+.aisf-committees__list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 16px;
+}
+.aisf-lc {
+	border: 1px solid var(--wp--preset--color--rule-light);
+	border-radius: 16px;
+	background: var(--wp--preset--color--paper);
+	transition: box-shadow 0.2s ease;
+	scroll-margin-top: 110px;
+}
+.aisf-lc[open] {
+	box-shadow: var(--wp--preset--shadow--card);
+}
+.aisf-lc.map-card-active {
+	outline: 2px solid var(--wp--preset--color--tangerine);
+	outline-offset: 3px;
+}
+.aisf-lc__summary {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	cursor: pointer;
+	list-style: none;
+}
+.aisf-lc__summary::-webkit-details-marker {
+	display: none;
+}
+.aisf-lc__avatar {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 999px;
+	object-fit: cover;
+	object-position: center top;
+}
+.aisf-lc__avatar--initial {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 14px;
+	font-weight: 600;
+}
+.aisf-lc__heading {
+	flex: 1;
+	min-width: 0;
+}
+.aisf-lc__name,
+.aisf-lc__president {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.aisf-lc__name {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-lc__president {
+	font-size: 13px;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__badge {
+	flex-shrink: 0;
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 4px 10px;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 10px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__chevron {
+	flex-shrink: 0;
+	color: var(--wp--preset--color--text-muted);
+	transition: transform 0.2s ease;
+}
+.aisf-lc[open] .aisf-lc__chevron {
+	transform: rotate(180deg);
+}
+.aisf-lc__body {
+	padding: 0 16px 16px 68px;
+}
+.aisf-lc__meta {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__since {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.aisf-lc__links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 16px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid var(--wp--preset--color--rule-light);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 11px;
+}
+.aisf-lc__links a,
+.aisf-lc__locate {
+	text-decoration: none;
+}
+.aisf-lc__mail,
+.aisf-lc__locate {
+	color: var(--wp--preset--color--tangerine-deep);
+}
+.aisf-lc__ext {
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-lc__locate {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font: inherit;
+}
+.aisf-committees__empty {
+	margin-top: 16px;
+	border-radius: 16px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 32px;
+	text-align: center;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-committees__empty p {
+	margin: 0;
+}
+.aisf-committees__empty-title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__note {
+	margin-top: 32px;
+	border-radius: 22px;
+	background: var(--wp--preset--color--paper-2);
+	padding: 24px;
+	font-size: 14px;
+	color: var(--wp--preset--color--text-muted);
+}
+.aisf-committees__note strong {
+	font-weight: 500;
+	color: var(--wp--preset--color--ink);
+}
+.aisf-committees__note a {
+	color: var(--wp--preset--color--tangerine-deep);
+}
+@media (prefers-reduced-motion: reduce) {
+	.aisf-lc,
+	.aisf-lc__chevron {
+		transition: none;
+	}
+}
